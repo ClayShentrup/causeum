@@ -326,6 +326,57 @@
 
   footer p { font-size: 0.82rem; color: var(--text-dim); }
 
+  details {
+    margin-top: 1.5rem;
+  }
+
+  details summary {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 0.8rem 0;
+    list-style: none;
+    transition: color 0.3s;
+  }
+
+  details summary::-webkit-details-marker { display: none; }
+
+  details summary::before {
+    content: '▸ ';
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+
+  details[open] summary::before {
+    content: '▾ ';
+  }
+
+  details summary:hover { color: var(--text-bright); }
+
+  .theory-content {
+    padding-top: 1rem;
+  }
+
+  .theory-content h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--text-bright);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .theory-content h3:first-child { margin-top: 0.5rem; }
+
+  .theory-content p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -523,8 +574,8 @@
 
   <div class="properties">
     <div class="property">
-      <h4>Honest Pricing Wins</h4>
-      <p>Understating your price means you look too expensive to recruit and get skipped. Overstating means you pay more out of pocket than the cause is worth to you. Honesty is your best strategy.</p>
+      <h4>Honest Pricing Is Approximately Optimal</h4>
+      <p>Understating your price risks getting skipped for cheaper donors. Overstating means you pay more than the cause is worth to you. You can shade your bid, but you don't know where the cutoff is—and shading too aggressively means missing the trade entirely.</p>
     </div>
     <div class="property">
       <h4>Maximum Impact</h4>
@@ -567,6 +618,38 @@
   <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes as donations. You set a price per cause that says how much you'd contribute per dollar of impact. The system matches donors daily—using the surplus from people who price high to recruit people who price low. When you're matched, you might sell one cause's stock and receive more of another, with the premium funded by a passionate supporter. Subsidies are embedded in the stock and stay with the cause if you leave. You can always liquidate at what you paid out of pocket.</p>
 
   <p>The result: every dollar in the system goes further than it would anywhere else.</p>
+</section>
+
+<!-- ────── THEORY ────── -->
+<section class="reveal">
+  <div class="section-num">12 — For the Skeptics</div>
+  <h2>Known limitations and game theory</h2>
+  <p>Causeum's mechanism has been stress-tested against standard mechanism design critiques. Here's what holds up and what doesn't.</p>
+
+  <details>
+    <summary>Read the full analysis</summary>
+    <div class="theory-content">
+
+    <h3>Honest pricing is not guaranteed</h3>
+    <p>Causeum is a pay-as-bid market. You pay what you state. So naturally, people will shade their bids—understate their price hoping to get recruited at a discount, or overstate hoping to appear as a cheaper recruit. This is the same dynamic present in every commodity exchange, real estate market, and first-price auction. It's not a novel vulnerability. Shading is risky: understate too much and you get skipped in favor of genuinely cheaper donors. Overstate and you pay more than the cause is worth to you. You don't know where the cutoff is, so aggressive shading means missing the trade entirely.</p>
+
+    <h3>The parking arbitrage</h3>
+    <p>If you genuinely want to fund DWB, depositing directly means you pay par. But you could instead park your money in a neutral cause, state a low DWB price, and wait to be recruited at a discount—getting $1 of DWB funding for $0.70 out of pocket. This is not extractive in a zero-sum sense. The subsidizer wanted to recruit someone into DWB. They succeeded. DWB got funded. But it creates real waste: the subsidizer paid a premium they didn't need to pay, and while you waited, yield flowed to the neutral cause instead of DWB. The defense is time and friction. Yield bleeding to a cause you don't care about is a real cost. Managing a parked position takes effort. For most users, the juice isn't worth the squeeze. At scale, this can be further mitigated by allowing downward-sloping demand curves (e.g., "I value the first $100 of DWB at $0.90 and the next $500 at $0.70") so the system can price-discriminate between a donor's first dollar and their hundredth.</p>
+
+    <h3>Why not VCG?</h3>
+    <p>We considered a Vickrey-Clarke-Groves mechanism, which would provide formal incentive compatibility—truthful reporting as a dominant strategy. VCG works by charging each participant the externality they impose on everyone else. It's theoretically elegant but practically fragile: it can run a budget deficit, produces counterintuitive prices under collusion, and nobody outside of academic economics understands it. More fundamentally, VCG requires irreversible payments to function (you can't undo a VCG transfer), which conflicts with the redeemable cause-stock model. The subsidy lien approach achieves cobra-prevention mechanically rather than through incentive design, which is simpler and more robust.</p>
+
+    <h3>Transient farming is not viable</h3>
+    <p>Could a bot rapidly cycle in and out of subsidized positions to drain liquidity? No. All matching settles in a single daily batch—you cannot cycle faster than once per day. Each cycle, the bot enters, gets matched, exits, repays the lien, and pays the transaction spread. The cause retains the lien. The bot loses the spread. Net result: the attacker loses money on every cycle. The atomic batch clearing makes this attack strictly unprofitable.</p>
+
+    <h3>The spread is a tax on efficiency</h3>
+    <p>The transaction spread—how the platform generates revenue—prevents marginal trades from clearing. This is the same deadweight loss present in every exchange. It's a calibration problem, not a design flaw. Too large a spread kills marginal matches. Too small and the platform isn't viable. The AUM fee on the total money market pool provides baseline revenue that allows the spread to be kept small.</p>
+
+    <h3>Static prices vs. diminishing marginal utility</h3>
+    <p>Users post a single price per cause, but in reality your millionth dollar to a cause is worth less than your first. This is true of every posted-price market. The mitigation is simple: you can update your prices whenever you want, and the system re-optimizes daily. A future version could support simple demand curves as a native input, but static prices with manual updates are sufficient for launch.</p>
+
+    </div>
+  </details>
 </section>
 
 <footer>
