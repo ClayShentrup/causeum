@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Causeum</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f14;
+    --bg-elevated: #141820;
+    --bg-card: #1a1f2a;
+    --border: #252b38;
+    --border-accent: #3d6b5e;
+    --text: #d4d8e0;
+    --text-dim: #7a8194;
+    --text-bright: #eef0f4;
+    --accent: #4ecba0;
+    --accent-dim: #2a7a5e;
+    --accent-glow: rgba(78, 203, 160, 0.08);
+    --warm: #e8c47a;
+    --warm-dim: #9a7a3a;
+    --red: #d4736e;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent-dim);
+    color: var(--text-bright);
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(12, 15, 20, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--text-bright);
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 2rem; }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2.5rem 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 15%; left: -20%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    color: var(--text-bright);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    max-width: 620px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  section {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  section + section { border-top: 1px solid var(--border); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  section h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--text-bright);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    line-height: 1.25;
+  }
+
+  section p { margin-bottom: 1.3rem; color: var(--text); }
+  section p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--text-bright); font-weight: 500; }
+
+  .example {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-dim);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+
+  .example-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .example p { margin-bottom: 0.8rem; }
+  .example p:last-child { margin-bottom: 0; }
+
+  .callout {
+    background: var(--accent-glow);
+    border: 1px solid var(--border-accent);
+    border-radius: 8px;
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .callout p { color: var(--text-bright); font-size: 1.05rem; }
+
+  .callout-red {
+    background: rgba(212, 115, 110, 0.06);
+    border-color: rgba(212, 115, 110, 0.3);
+  }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem 0;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .flow-marker {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--accent-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flow-step:not(:last-child) .flow-marker::after {
+    content: '';
+    position: absolute;
+    top: 36px; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: calc(100% + 10px);
+    background: var(--border);
+  }
+
+  .flow-content { padding: 0.3rem 0 2.2rem; }
+
+  .flow-content h3 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-bright);
+    margin-bottom: 0.4rem;
+  }
+
+  .flow-content p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  .val-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.9rem;
+  }
+
+  .val-table th {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .val-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .val-table tr:last-child td { border-bottom: none; }
+  .val-table .num { font-family: var(--mono); color: var(--accent); font-weight: 500; }
+  .val-table .num-warm { font-family: var(--mono); color: var(--warm); font-weight: 500; }
+
+  .properties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .property {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+  }
+
+  .property h4 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .property p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-bottom: 0;
+    line-height: 1.55;
+  }
+
+  footer {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 2.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  footer p { font-size: 0.82rem; color: var(--text-dim); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.72rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .properties { grid-template-columns: 1fr; }
+    .example { padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Cause<span>um</span></div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#matching">Matching</a>
+    <a href="#cobra">Why It's Safe</a>
+    <a href="#properties">Guarantees</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Political donation matching</div>
+  <h1>Spend $10. Direct $100 <em>to your cause.</em></h1>
+  <p class="hero-sub">Bob donates $100/month to the Red Cross. He likes Doctors Without Borders almost as much—a dollar of Red Cross funding is worth 90 cents of DWB to him. So for just $10, you can redirect Bob's entire $100 to DWB. Bob's happy. You spent $10 to move $100. That's Causeum.</p>
+</div>
+
+<!-- ────── THE BASICS ────── -->
+<section id="how" class="reveal">
+  <div class="section-num">01 — How It Works</div>
+  <h2>The math is simple</h2>
+
+  <p>Bob donates $100/month to the Red Cross. He values DWB at 90% as much. That means he'd switch his entire $100 to DWB if someone covered the 10% gap—just $10.</p>
+
+  <p>You're a DWB supporter. You spend $10 to cover Bob's gap. Bob switches. DWB gets $100 of new funding. You spent $10 to direct $100. Bob is no worse off—he got 90 cents of value per dollar either way. The Red Cross lost $100. DWB gained $100. You paid $10.</p>
+
+  <p>Another way to see it: Bob would redirect his $100 if $111.11 went to DWB instead, because $111.11 × 0.90 = $100—he's indifferent. You add $11.11 to Bob's $100 and DWB gets $111.11. Either way, roughly 10x leverage.</p>
+
+  <div class="callout">
+    <p>10x leverage on every dollar you spend. That's the power of matching donors who almost agree with you.</p>
+  </div>
+
+  <p>Causeum finds these matches automatically. You deposit money, buy stock in the causes you support, and set a price for each cause—how much a dollar of funding there is worth to you. The system does the rest, matching donors daily to maximize total impact.</p>
+</section>
+
+<!-- ────── YOUR PORTFOLIO ────── -->
+<section class="reveal">
+  <div class="section-num">02 — Your Portfolio</div>
+  <h2>It looks and feels like a brokerage account</h2>
+
+  <p>When you deposit money and set your prices, the system builds you a portfolio. You might see $600 of Habitat for Humanity stock and $400 of Doctors Without Borders stock on your dashboard. Yield flows to those causes proportionally, every day. You own these positions and you can see them.</p>
+
+  <p>If you enable auto-trade, the system looks for beneficial matches once a day. Maybe tomorrow your portfolio shifts: you traded some Habitat for Humanity for 110% as much World Wildlife Fund stock, because a passionate WWF supporter funded the premium. Your dashboard shows the change, just like a robo-advisor rebalancing your portfolio.</p>
+
+  <div class="callout">
+    <p>Your $500 generated $1,340 of annual yield to Habitat for Humanity this month.</p>
+  </div>
+
+  <p>That extra impact came from matching. The system found donors whose surplus could recruit you or others into more impactful positions.</p>
+</section>
+
+<!-- ────── MATCHING ────── -->
+<section id="matching" class="reveal">
+  <div class="section-num">03 — Smart Matching</div>
+  <h2>How donors amplify each other</h2>
+
+  <p>Different people value causes differently, and those differences create opportunities. When one donor is willing to pay more per dollar of impact than another, there's a trade that makes everyone better off. Causeum finds those trades automatically.</p>
+
+  <div class="example">
+    <div class="example-label">How a match works</div>
+    <p>Alice prices <strong>Doctors Without Borders</strong> at <strong>$1.00</strong>—she'll cover the whole dollar herself. Bob prices it at <strong>$0.70</strong>—he supports the cause but the cost feels steep.</p>
+    <p>Alice has $0.30 of surplus per dollar. The system uses part of Alice's surplus to subsidize Bob's purchase. Bob buys DWB stock at $0.70 out of pocket. Alice's surplus covers the remaining $0.30. DWB gets a full dollar of yield-generating stock.</p>
+    <p><strong>Result:</strong> Alice's $1 didn't just fund her own position—it recruited Bob too. DWB gets more total funding than if each person had donated alone.</p>
+  </div>
+
+  <div class="example">
+    <div class="example-label">Three Habitat for Humanity supporters</div>
+    <table class="val-table">
+      <thead>
+        <tr>
+          <th>Donor</th>
+          <th>HFH Price</th>
+          <th>Cost per Dollar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td class="num">$0.95</td>
+          <td class="num">$0.05</td>
+        </tr>
+        <tr>
+          <td>Bob</td>
+          <td class="num">$0.80</td>
+          <td class="num">$0.20</td>
+        </tr>
+        <tr>
+          <td>Carol</td>
+          <td class="num-warm">$0.60</td>
+          <td class="num-warm">$0.40</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Alice and Bob donate $1 each. Habitat for Humanity gets $2 of annual yield. Combined surplus: $0.25.</p>
+    <p>Carol supports Habitat for Humanity but at $0.40 per dollar, the personal cost feels too steep. The system uses Alice and Bob's combined surplus to cover part of Carol's gap, bringing her in.</p>
+    <p><strong>Result:</strong> Habitat for Humanity gets $2.75 of annual yield instead of $2.00. Nobody chose to subsidize anyone. The system found the efficient match automatically.</p>
+  </div>
+</section>
+
+<!-- ────── KEY INSIGHT ────── -->
+<section class="reveal">
+  <div class="section-num">04 — The Key Insight</div>
+  <h2>Funders and subsidizers are the same people</h2>
+
+  <p>In most donation platforms, "donating" and "matching someone else's donation" are separate actions. Causeum unifies them into one thing: your price.</p>
+
+  <p>Everyone states one price per cause. If your price is higher than someone else's, your surplus automatically subsidizes their purchase—making cause stock cheaper for them. If your price is lower, you're the one being recruited. The system figures out who plays which role and executes the optimal set of matches.</p>
+
+  <p>There's no "subsidizer mode" to turn on. No separate matching budget to set. Your price implies everything. When nobody is available to recruit, your entire dollar goes directly to the cause. When there's someone cheaper to bring in, the system diverts part of your surplus to recruit them—because that generates more total impact per dollar.</p>
+</section>
+
+<!-- ────── COBRA ────── -->
+<section id="cobra" class="reveal">
+  <div class="section-num">05 — The Hard Problem</div>
+  <h2>Why most donation matching schemes fail</h2>
+
+  <p>There's a famous story about the British colonial government in India offering a bounty for dead cobras. Locals started breeding cobras to collect the bounty. When the government cancelled the program, the breeders released their stock. More cobras than ever.</p>
+
+  <p>The same trap exists in charitable giving. If you pay people to move their money <em>away</em> from a cause you dislike, you give people a reason to put money <em>into</em> that cause just to collect the payment. Every bounty on removal creates demand for the thing being removed.</p>
+
+  <div class="callout-red callout">
+    <p>You can never pay people to stop funding something. You can only make the alternatives more attractive.</p>
+  </div>
+
+  <p>Causeum avoids this trap with two structural rules.</p>
+
+  <p><strong>First: subsidies are on the destination, not the origin.</strong> When someone's surplus makes World Wildlife Fund stock cheaper, that discount is available to everyone—regardless of what they held before. There's no bonus for leaving a specific cause. A bad actor who parks money in a cause they oppose, hoping to collect a premium for leaving, discovers there's no premium to collect. The discount is on WWF, not on departing anything. Going through another cause first accomplishes nothing.</p>
+
+  <p><strong>Second: you can only ever withdraw what you paid.</strong> When Bob buys subsidized WWF stock at $0.70, the other $0.30 came from Alice's surplus. That $0.30 belongs to the cause permanently. If Bob withdraws, he gets $0.70 back—exactly what he put in. The subsidy is embedded in the stock, not in Bob's account. There's nothing to extract.</p>
+</section>
+
+<!-- ────── CARRYING COST ────── -->
+<section class="reveal">
+  <div class="section-num">06 — Built-In Protection</div>
+  <h2>Time is on the honest donor's side</h2>
+
+  <p>While your money sits in a cause fund, it earns interest for that cause every day. If you're a genuine supporter, that's the whole point.</p>
+
+  <p>But if someone parks money in a cause they don't support, hoping to game the system, every day they hold that position costs them real money. Interest is flowing to something they don't care about while they wait. It's a small cost—money market rates are modest—but it only penalizes bad actors. Honest donors pay nothing, psychologically.</p>
+</section>
+
+<!-- ────── SWITCHING ────── -->
+<section class="reveal">
+  <div class="section-num">07 — Switching and Exiting</div>
+  <h2>How trades actually work</h2>
+
+  <p>When the system finds a beneficial match, it looks like this: you sell your Habitat for Humanity stock and receive 110% as much Doctors Without Borders stock. The extra 10% was funded by a DWB supporter's surplus. Your dashboard shows the rebalance just like a managed fund.</p>
+
+  <p>The key detail: your DWB position now carries a <strong>subsidy lien</strong>—a record of the amount someone else put in. If you exit that position, you repay the lien. You walk away with exactly what you paid out of pocket. The subsidy stays with the cause.</p>
+
+  <p>This means every match is self-correcting. If someone gets recruited into a position and then leaves, the subsidy flows back and becomes available to recruit the next person. The system only "spends" subsidy when someone holds long-term—which is exactly what supporters want.</p>
+
+  <p>Want to leave entirely? Just liquidate your positions. You get back what you paid, the liens stay with the causes, and the system re-optimizes tomorrow without you. Your principal was always yours.</p>
+</section>
+
+<!-- ────── DOUBLE EFFECT ────── -->
+<section class="reveal">
+  <div class="section-num">08 — The Double Effect</div>
+  <h2>Defunding what you oppose is a side effect</h2>
+
+  <p>When the system makes Doctors Without Borders stock cheap through efficient matching, people leave all kinds of other causes to take the deal—including causes you might not support. DWB gains funding and other causes lose it, simultaneously, from the same dollars.</p>
+
+  <p>This "double effect" is real and valuable. But it's emergent, never targeted. You can't aim the gravitational pull at specific causes. You just make your cause so attractive that people switch to it from wherever they were. The defunding happens as a side effect of making good causes compelling—which is exactly what keeps the mechanism safe from cobra breeding.</p>
+</section>
+
+<!-- ────── PROPERTIES ────── -->
+<section id="properties" class="reveal">
+  <div class="section-num">09 — What We Guarantee</div>
+  <h2>Properties of the system</h2>
+
+  <div class="properties">
+    <div class="property">
+      <h4>Honest Pricing Wins</h4>
+      <p>Understating your price means you look too expensive to recruit and get skipped. Overstating means you pay more out of pocket than the cause is worth to you. Honesty is your best strategy.</p>
+    </div>
+    <div class="property">
+      <h4>Maximum Impact</h4>
+      <p>The matching algorithm recruits the cheapest donors first, stretching every surplus dollar as far as possible. No alternative allocation produces more total cause funding.</p>
+    </div>
+    <div class="property">
+      <h4>Manipulation-Proof</h4>
+      <p>Nobody can profit by faking support for a cause they don't believe in. Subsidies attach to the destination, not the origin, and you can only ever withdraw what you paid.</p>
+    </div>
+    <div class="property">
+      <h4>No One Loses</h4>
+      <p>Every trade is voluntary through auto-trade opt-in. Your money is always yours, always redeemable at your out-of-pocket cost.</p>
+    </div>
+    <div class="property">
+      <h4>Fully Backed</h4>
+      <p>Every dollar sits in a money market fund. The platform's revenue comes from a small spread on matches and a modest management fee.</p>
+    </div>
+    <div class="property">
+      <h4>Self-Correcting</h4>
+      <p>When someone exits a subsidized position, the subsidy flows back to the pool and recruits the next donor. The system continuously re-optimizes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ────── REVENUE ────── -->
+<section class="reveal">
+  <div class="section-num">10 — Sustainability</div>
+  <h2>How Causeum sustains itself</h2>
+
+  <p>When the system matches donors, there's a gap between what the subsidizer is willing to spend and what the recruit needs. Causeum keeps a small portion of that gap as a transaction spread, similar to how any exchange operates.</p>
+
+  <p>We also charge a modest annual management fee on total assets, comparable to any donor-advised fund. The incentives are clean: we make more money when there are more donors and more productive matches. We profit by making the system work well, not by extracting from participants.</p>
+</section>
+
+<!-- ────── SUMMARY ────── -->
+<section class="reveal">
+  <div class="section-num">11 — In Short</div>
+  <h2>The whole idea</h2>
+
+  <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes as donations. You set a price per cause that says how much you'd contribute per dollar of impact. The system matches donors daily—using the surplus from people who price high to recruit people who price low. When you're matched, you might sell one cause's stock and receive more of another, with the premium funded by a passionate supporter. Subsidies are embedded in the stock and stay with the cause if you leave. You can always liquidate at what you paid out of pocket.</p>
+
+  <p>The result: every dollar in the system goes further than it would anywhere else.</p>
+</section>
+
+<footer>
+  <p>Causeum is a mechanism design concept under development, initially focused on 527 political organizations.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
