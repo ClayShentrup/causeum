@@ -8,7 +8,6 @@
 <style>
   :root {
     --bg: #0c0f14;
-    --bg-elevated: #141820;
     --bg-card: #1a1f2a;
     --border: #252b38;
     --border-accent: #3d6b5e;
@@ -19,377 +18,72 @@
     --accent-dim: #2a7a5e;
     --accent-glow: rgba(78, 203, 160, 0.08);
     --warm: #e8c47a;
-    --warm-dim: #9a7a3a;
     --red: #d4736e;
     --serif: 'Instrument Serif', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --mono: 'JetBrains Mono', monospace;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.7;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection {
-    background: var(--accent-dim);
-    color: var(--text-bright);
-  }
-
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(12, 15, 20, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    color: var(--text-bright);
-    letter-spacing: -0.02em;
-  }
-
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 17px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent-dim); color: var(--text-bright); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: rgba(12,15,20,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .logo { font-family: var(--serif); font-size: 1.5rem; color: var(--text-bright); letter-spacing: -0.02em; }
   .logo span { color: var(--accent); }
-
   .nav-links { display: flex; gap: 2rem; }
-
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
+  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--accent); }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 2.5rem 6rem;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 15%; left: -20%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-label {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.2s;
-  }
-
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 6vw, 4.2rem);
-    color: var(--text-bright);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.4s;
-  }
-
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 2.5rem 6rem; max-width: 900px; margin: 0 auto; position: relative; }
+  .hero::before { content: ''; position: absolute; top: 15%; left: -20%; width: 500px; height: 500px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; }
+  .hero-label { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem,6vw,4.2rem); color: var(--text-bright); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s; }
   .hero h1 em { font-style: italic; color: var(--accent); }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--text-dim);
-    max-width: 620px;
-    line-height: 1.8;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.6s;
-  }
-
-  section {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 5rem 2.5rem;
-  }
-
+  .hero-sub { font-size: 1.15rem; color: var(--text-dim); max-width: 620px; line-height: 1.8; opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s; }
+  section { max-width: 780px; margin: 0 auto; padding: 5rem 2.5rem; }
   section + section { border-top: 1px solid var(--border); }
-
-  .section-num {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--accent-dim);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
-  section h2 {
-    font-family: var(--serif);
-    font-size: 2rem;
-    color: var(--text-bright);
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-    line-height: 1.25;
-  }
-
+  .section-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
+  section h2 { font-family: var(--serif); font-size: 2rem; color: var(--text-bright); letter-spacing: -0.01em; margin-bottom: 1.5rem; line-height: 1.25; }
   section p { margin-bottom: 1.3rem; color: var(--text); }
   section p:last-child { margin-bottom: 0; }
-
   strong { color: var(--text-bright); font-weight: 500; }
-
-  .example {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent-dim);
-    border-radius: 6px;
-    padding: 1.5rem 1.8rem;
-    margin: 1.8rem 0;
-    font-size: 0.95rem;
-  }
-
-  .example-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
+  .example { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent-dim); border-radius: 6px; padding: 1.5rem 1.8rem; margin: 1.8rem 0; font-size: 0.95rem; }
+  .example-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
   .example p { margin-bottom: 0.8rem; }
   .example p:last-child { margin-bottom: 0; }
-
-  .callout {
-    background: var(--accent-glow);
-    border: 1px solid var(--border-accent);
-    border-radius: 8px;
-    padding: 1.8rem 2rem;
-    margin: 2rem 0;
-  }
-
+  .callout { background: var(--accent-glow); border: 1px solid var(--border-accent); border-radius: 8px; padding: 1.8rem 2rem; margin: 2rem 0; }
   .callout p { color: var(--text-bright); font-size: 1.05rem; }
-
-  .callout-red {
-    background: rgba(212, 115, 110, 0.06);
-    border-color: rgba(212, 115, 110, 0.3);
-  }
-
-  .flow {
-    display: flex;
-    flex-direction: column;
-    margin: 2.5rem 0;
-  }
-
-  .flow-step {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    position: relative;
-  }
-
-  .flow-marker {
-    flex-shrink: 0;
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 2px solid var(--accent-dim);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    font-weight: 500;
-    position: relative;
-    z-index: 2;
-  }
-
-  .flow-step:not(:last-child) .flow-marker::after {
-    content: '';
-    position: absolute;
-    top: 36px; left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: calc(100% + 10px);
-    background: var(--border);
-  }
-
-  .flow-content { padding: 0.3rem 0 2.2rem; }
-
-  .flow-content h3 {
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-bright);
-    margin-bottom: 0.4rem;
-  }
-
-  .flow-content p {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-bottom: 0;
-    line-height: 1.6;
-  }
-
-  .val-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.8rem 0;
-    font-size: 0.9rem;
-  }
-
-  .val-table th {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-align: left;
-    padding: 0.8rem 1rem;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .val-table td {
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
-
+  .callout-red { background: rgba(212,115,110,0.06); border-color: rgba(212,115,110,0.3); }
+  .val-table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.9rem; }
+  .val-table th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 0.8rem 1rem; border-bottom: 2px solid var(--border); }
+  .val-table td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); }
   .val-table tr:last-child td { border-bottom: none; }
   .val-table .num { font-family: var(--mono); color: var(--accent); font-weight: 500; }
   .val-table .num-warm { font-family: var(--mono); color: var(--warm); font-weight: 500; }
-
-  .properties {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin: 2rem 0;
-  }
-
-  .property {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.3rem 1.5rem;
-  }
-
-  .property h4 {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  .property p {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    margin-bottom: 0;
-    line-height: 1.55;
-  }
-
-  footer {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 4rem 2.5rem;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-
-  footer p { font-size: 0.82rem; color: var(--text-dim); }
-
-  details {
-    margin-top: 1.5rem;
-  }
-
-  details summary {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--accent);
-    cursor: pointer;
-    padding: 0.8rem 0;
-    list-style: none;
-    transition: color 0.3s;
-  }
-
+  .val-table .num-red { font-family: var(--mono); color: var(--red); font-weight: 500; }
+  .properties { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 2rem 0; }
+  .property { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.3rem 1.5rem; }
+  .property h4 { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .property p { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0; line-height: 1.55; }
+  .notif { background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 8px; padding: 1.8rem 2rem; margin: 2rem 0; font-size: 0.92rem; }
+  .notif-header { font-family: var(--serif); font-size: 1.1rem; color: var(--accent); margin-bottom: 0.8rem; }
+  .notif p { margin-bottom: 0.6rem; color: var(--text-dim); }
+  .notif strong { color: var(--text-bright); }
+  details { margin-top: 1.5rem; }
+  details summary { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; color: var(--accent); cursor: pointer; padding: 0.8rem 0; list-style: none; transition: color 0.3s; }
   details summary::-webkit-details-marker { display: none; }
-
-  details summary::before {
-    content: '▸ ';
-    transition: transform 0.2s;
-    display: inline-block;
-  }
-
-  details[open] summary::before {
-    content: '▾ ';
-  }
-
+  details summary::before { content: '▸ '; display: inline-block; }
+  details[open] summary::before { content: '▾ '; }
   details summary:hover { color: var(--text-bright); }
-
-  .theory-content {
-    padding-top: 1rem;
-  }
-
-  .theory-content h3 {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    color: var(--text-bright);
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
-  }
-
+  .theory-content { padding-top: 1rem; }
+  .theory-content h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--text-bright); margin-top: 2rem; margin-bottom: 0.8rem; line-height: 1.3; }
   .theory-content h3:first-child { margin-top: 0.5rem; }
-
-  .theory-content p {
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
+  .theory-content p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1rem; }
+  .theory-content .val-table { font-size: 0.82rem; }
+  .theory-content .val-table td, .theory-content .val-table th { padding: 0.5rem 0.6rem; }
+  footer { max-width: 780px; margin: 0 auto; padding: 4rem 2.5rem; border-top: 1px solid var(--border); text-align: center; }
+  footer p { font-size: 0.82rem; color: var(--text-dim); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 1; }
   @media (max-width: 600px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1rem; }
@@ -397,7 +91,7 @@
     .hero { padding: 7rem 1.5rem 4rem; }
     section { padding: 3.5rem 1.5rem; }
     .properties { grid-template-columns: 1fr; }
-    .example { padding: 1.2rem; }
+    .example, .notif { padding: 1.2rem; }
   }
 </style>
 </head>
@@ -407,266 +101,229 @@
   <div class="logo">Cause<span>um</span></div>
   <div class="nav-links">
     <a href="#how">How It Works</a>
-    <a href="#matching">Matching</a>
-    <a href="#cobra">Why It's Safe</a>
+    <a href="#subsidy">Subsidies</a>
+    <a href="#safe">Why It's Safe</a>
     <a href="#properties">Guarantees</a>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-label">A matching market for political donations</div>
-  <h1>Spend $10. Direct $100 <em>to your cause.</em></h1>
-  <p class="hero-sub">Bob donates $100/month to Club for Growth. He likes Americans for Prosperity almost as much—a dollar of Club for Growth funding is worth 90 cents of AFP to him. So for just $10, you can redirect Bob's entire $100 to AFP. Bob's happy. You spent $10 to move $100. That's Causeum.</p>
+  <div class="hero-label">A matching market for political and charitable donations</div>
+  <h1>I'll stop funding mine <em>if you stop funding yours.</em></h1>
+  <p class="hero-sub">Alice gives $100/month to the Democrats. Bob gives $100/month to the Republicans. They're just burning money fighting each other. They could both agree to stop and donate to a worthy cause like the Against Malaria Foundation instead. Causeum does this automatically—you just state how much you value different causes, and the platform continuously finds opportunities to make your donations more efficient.</p>
 </div>
 
-<!-- ────── THE BASICS ────── -->
+<!-- ────── HOW IT WORKS ────── -->
 <section id="how" class="reveal">
   <div class="section-num">01 — How It Works</div>
-  <h2>The math is simple</h2>
-
-  <p>Bob donates $100/month to Club for Growth. He values AFP at 90% as much. That means he'd switch his entire $100 to AFP if someone covered the 10% gap—just $10.</p>
-
-  <p>You're an AFP supporter. You spend $10 to cover Bob's gap. Bob switches. AFP gets $100 of new funding. You spent $10 to direct $100. Bob is no worse off—he got 90 cents of value per dollar either way. Club for Growth lost $100. AFP gained $100. You paid $10.</p>
-
-  <p>Another way to see it: Bob would redirect his $100 if $111.11 went to AFP instead, because $111.11 × 0.90 = $100—he's indifferent. You add $11.11 to Bob's $100 and AFP gets $111.11. Either way, roughly 10x leverage.</p>
-
-  <div class="callout">
-    <p>10x leverage on every dollar you spend. That's the power of matching donors who almost agree with you.</p>
-  </div>
-
-  <p>Causeum finds these matches automatically. You deposit money, buy stock in the causes you support, and set a price for each cause—how much a dollar of funding there is worth to you. The system does the rest, matching donors daily to maximize total impact.</p>
+  <h2>Three steps</h2>
+  <p><strong>Deposit money.</strong> It goes into a money market fund. Fully backed, always yours, withdraw anytime.</p>
+  <p><strong>Buy cause stock.</strong> Pick the political organizations or charities you want to support. The yield your money earns flows to those causes as donations. Donations to 501(c)(3) charities are tax-deductible—we track your holdings daily so attribution is exact.</p>
+  <p><strong>Set your prices.</strong> Rate every cause from $0.00 to $1.00—how much a dollar of funding there is worth to you. If your price is less than $1.00, that gap is what you'd need someone else to cover for you to donate there. If your price is exactly $1.00, you're saying you'd fund it entirely yourself—and your surplus is available to help bring others in.</p>
+  <p>The system continuously finds opportunities to make everyone's donations go further and executes them instantly. You get a notification when your money moves.</p>
 </section>
 
-<!-- ────── YOUR PORTFOLIO ────── -->
-<section class="reveal">
-  <div class="section-num">02 — Your Portfolio</div>
-  <h2>It looks and feels like a brokerage account</h2>
-
-  <p>When you deposit money and set your prices, the system builds you a portfolio. You might see $600 of Emily's List stock and $400 of Americans for Prosperity stock on your dashboard. Yield flows to those causes proportionally, every day. You own these positions and you can see them.</p>
-
-  <p>If you enable auto-trade, the system looks for beneficial matches once a day. Maybe tomorrow your portfolio shifts: you traded some Emily's List for 110% as much VoteVets stock, because a passionate VoteVets supporter funded the premium. Your dashboard shows the change, just like a robo-advisor rebalancing your portfolio.</p>
-
-  <div class="callout">
-    <p>Your $500 directed $1,340 of total funding to Emily's List this month.</p>
-  </div>
-
-  <p>That extra impact came from matching. The system found donors whose surplus could recruit you or others into more impactful positions.</p>
-</section>
-
-<!-- ────── MATCHING ────── -->
-<section id="matching" class="reveal">
-  <div class="section-num">03 — Smart Matching</div>
-  <h2>How donors amplify each other</h2>
-
-  <p>Different people value causes differently, and those differences create opportunities. When one donor is willing to pay more per dollar of impact than another, there's a trade that makes everyone better off. Causeum finds those trades automatically.</p>
+<!-- ────── THE SUBSIDY ────── -->
+<section id="subsidy" class="reveal">
+  <div class="section-num">02 — The Core Idea</div>
+  <h2>Your surplus recruits other donors</h2>
+  <p>When you value a cause at $1.00, you're willing to fund every dollar yourself. But what if someone else values the same cause at $0.70? They'd donate if someone covered the $0.30 gap. Your surplus does that automatically.</p>
+  <p>You don't choose who to subsidize. You don't even know it's happening. You just state your prices and the optimizer spends your surplus where it creates the most impact—recruiting the cheapest available donors into the causes you value.</p>
 
   <div class="example">
-    <div class="example-label">How a match works</div>
-    <p>Alice prices <strong>Americans for Prosperity</strong> at <strong>$1.00</strong>—she'll cover the whole dollar herself. Bob prices it at <strong>$0.70</strong>—he supports the cause but the cost feels steep.</p>
-    <p>Alice has $0.30 of surplus per dollar. The system uses part of Alice's surplus to subsidize Bob's purchase. Bob buys AFP stock at $0.70 out of pocket. Alice's surplus covers the remaining $0.30. AFP gets a full dollar of yield-generating stock.</p>
-    <p><strong>Result:</strong> Alice's $1 didn't just fund her own position—it recruited Bob too. AFP gets more total funding than if each person had donated alone.</p>
+    <div class="example-label">How a subsidy works</div>
+    <p>Grace values <strong>VoteVets</strong> at <strong>$1.00</strong>. She has $350 in the system. Her surplus—$0.15/dollar above what it costs to hold her own position—sits as an open offer.</p>
+    <p>Sam values VoteVets at <strong>$0.70</strong>. He'd donate there if someone covered his $0.30 gap. The optimizer sees Grace's offer and matches it with other subsidizers to cover Sam's gap.</p>
+    <p><strong>What happens:</strong> Real money moves out of Grace's balance and into a <strong>lien</strong> on Sam's VoteVets position. Grace's redeemable balance drops. Sam holds VoteVets stock that cost him $0.70 out of pocket, with a $0.30 lien funded by Grace and others.</p>
+    <p>VoteVets now has another $1.00 of yield-generating stock. Grace spent $0.15 to help recruit it. That's leverage.</p>
   </div>
 
-  <div class="example">
-    <div class="example-label">Three Emily's List supporters</div>
-    <table class="val-table">
-      <thead>
-        <tr>
-          <th>Donor</th>
-          <th>EL Price</th>
-          <th>Cost per Dollar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Alice</td>
-          <td class="num">$0.95</td>
-          <td class="num">$0.05</td>
-        </tr>
-        <tr>
-          <td>Bob</td>
-          <td class="num">$0.80</td>
-          <td class="num">$0.20</td>
-        </tr>
-        <tr>
-          <td>Carol</td>
-          <td class="num-warm">$0.60</td>
-          <td class="num-warm">$0.40</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>Alice and Bob donate $1 each. Emily's List gets $2 of annual yield. Combined surplus: $0.25.</p>
-    <p>Carol supports Emily's List but at $0.40 per dollar, the personal cost feels too steep. The system uses Alice and Bob's combined surplus to cover part of Carol's gap, bringing her in.</p>
-    <p><strong>Result:</strong> Emily's List gets $2.75 of annual yield instead of $2.00. Nobody chose to subsidize anyone. The system found the efficient match automatically.</p>
+  <p>Neither party needs to know the other exists. Neither agreed to a bilateral trade. The optimizer just found that Grace's surplus and Sam's price made a match.</p>
+</section>
+
+<!-- ────── THE LIEN ────── -->
+<section class="reveal">
+  <div class="section-num">03 — The Lien</div>
+  <h2>What keeps it locked in</h2>
+  <p>When the optimizer moves someone into a subsidized position, the subsidy becomes a permanent <strong>lien</strong> on that stock. This is real money that left real accounts—not an accounting fiction.</p>
+  <p>If Sam wants to leave his VoteVets position, he repays the lien. He walks away with $0.70—exactly what he paid out of pocket. The $0.30 lien flows back to the subsidizers' pools, ready to recruit the next person.</p>
+  <p>If Grace changes her mind and lowers her VoteVets valuation, the optimizer may pull her subsidy back and the lien shrinks. Sam's out-of-pocket obligation rises. If it rises past what Sam's willing to pay, the system unwinds the position—Sam exits, Grace gets her money back.</p>
+  <p>The lien is what makes the whole system work. Without it, subsidized donors could take the cheap stock and immediately move back to their original cause—keeping the benefit without maintaining the position. The lien ensures that if you leave, you give back what you didn't pay for.</p>
+</section>
+
+<!-- ────── THE DOUBLE EFFECT ────── -->
+<section class="reveal">
+  <div class="section-num">04 — The Double Effect</div>
+  <h2>Defunding happens as a side effect</h2>
+  <p>Grace subsidizes VoteVets because she likes VoteVets. She doesn't target anyone. But some of the people the optimizer recruits into VoteVets were previously in causes Grace hates—like Club for Growth. They left voluntarily because the subsidized price was attractive enough.</p>
+  <p>Meanwhile, Sam was independently subsidizing causes he cares about. Some of the people he recruited came from Emily's List. Neither Grace nor Sam coordinated. Neither paid the other. But the net effect is: both got their enemies defunded.</p>
+
+  <div class="callout">
+    <p>The double effect is real but emergent. You fund what you love. Defunding what you hate is a side effect of making your cause more attractive than the alternatives.</p>
   </div>
 </section>
 
-<!-- ────── KEY INSIGHT ────── -->
+<!-- ────── WHAT YOU SEE ────── -->
 <section class="reveal">
-  <div class="section-num">04 — The Key Insight</div>
-  <h2>Funders and subsidizers are the same people</h2>
+  <div class="section-num">05 — What You See</div>
+  <h2>Notifications</h2>
+  <p>Your dashboard shows your cause stock positions, the yield flowing to each cause, and your total impact. When the optimizer executes a move, you get a notification:</p>
 
-  <p>In most donation platforms, "donating" and "matching someone else's donation" are separate actions. Causeum unifies them into one thing: your price.</p>
+  <div class="notif">
+    <div class="notif-header">Your surplus just recruited a new donor.</div>
+    <p>$0.15 of your surplus helped bring a new donor into <strong>VoteVets</strong>. They committed $1.00 to VoteVets, of which $0.70 was their own money and $0.30 was covered by you and other supporters.</p>
+    <p><strong>Your balance now:</strong> $335 redeemable (was $350)</p>
+    <p><strong>Your impact:</strong> $1.00 of new VoteVets funding from $0.15 of your surplus</p>
+  </div>
 
-  <p>Everyone states one price per cause. If your price is higher than someone else's, your surplus automatically subsidizes their purchase—making cause stock cheaper for them. If your price is lower, you're the one being recruited. The system figures out who plays which role and executes the optimal set of matches.</p>
+  <div class="notif">
+    <div class="notif-header">You got a better deal on a cause you like.</div>
+    <p>Supporters of <strong>VoteVets</strong> are subsidizing new positions. You've been matched into VoteVets at a discounted price.</p>
+    <p><strong>Your portfolio now:</strong> $300 VoteVets (cost you $210 out of pocket, $90 lien from subsidizers)</p>
+    <p><strong>If you leave:</strong> you get $210 back. The $90 returns to the subsidizers.</p>
+  </div>
+</section>
 
-  <p>There's no "subsidizer mode" to turn on. No separate matching budget to set. Your price implies everything. When nobody is available to recruit, your entire dollar goes directly to the cause. When there's someone cheaper to bring in, the system diverts part of your surplus to recruit them—because that generates more total impact per dollar.</p>
+<!-- ────── WHY IT'S SAFE ────── -->
+<section id="safe" class="reveal">
+  <div class="section-num">06 — Why It's Safe</div>
+  <h2>No one can game this</h2>
+  <p><strong>You can only withdraw what you paid.</strong> The lien belongs to the cause until you leave, at which point it goes back to the subsidizers. There's nothing to extract.</p>
+  <p><strong>There's no stock to resell.</strong> Anyone who wants cause stock just buys new stock at par. Cause stock has no resale value—it only has value as yield flowing to a cause you believe in.</p>
+  <p><strong>Faking doesn't help.</strong> Parking money in a cause you hate to attract subsidies doesn't work—the subsidies are on the destination, not the origin. Cheap VoteVets stock is available to everyone regardless of what they held before. Going through Club for Growth first accomplishes nothing except bleeding yield to a cause you hate.</p>
+  <p><strong>Moves are atomic.</strong> The optimizer executes subsidy placements atomically. You can never be left holding a position you didn't agree to.</p>
 </section>
 
 <!-- ────── COBRA ────── -->
-<section id="cobra" class="reveal">
-  <div class="section-num">05 — The Hard Problem</div>
-  <h2>Why most donation matching schemes fail</h2>
-
-  <p>There's a famous story about the British colonial government in India offering a bounty for dead cobras. Locals started breeding cobras to collect the bounty. When the government cancelled the program, the breeders released their stock. More cobras than ever.</p>
-
-  <p>The same trap exists in charitable giving. If you pay people to move their money <em>away</em> from a cause you dislike, you give people a reason to put money <em>into</em> that cause just to collect the payment. Every bounty on removal creates demand for the thing being removed.</p>
-
+<section class="reveal">
+  <div class="section-num">07 — The Cobra Problem</div>
+  <h2>Why most matching schemes fail—and why this doesn't</h2>
+  <p>The British colonial government in India once offered a bounty for dead cobras. Locals started breeding cobras to collect the bounty. When the government cancelled the program, the breeders released their stock. More cobras than ever.</p>
+  <p>If you pay people to move money <em>away</em> from a cause, you incentivize people to put money <em>into</em> that cause to collect the payment.</p>
   <div class="callout-red callout">
     <p>You can never pay people to stop funding something. You can only make the alternatives more attractive.</p>
   </div>
-
-  <p>Causeum avoids this trap with two structural rules.</p>
-
-  <p><strong>First: subsidies are on the destination, not the origin.</strong> When someone's surplus makes VoteVets stock cheaper, that discount is available to everyone—regardless of what they held before. There's no bonus for leaving a specific cause. A bad actor who parks money in a cause they oppose, hoping to collect a premium for leaving, discovers there's no premium to collect. The discount is on VoteVets, not on departing anything. Going through another cause first accomplishes nothing.</p>
-
-  <p><strong>Second: you can only ever withdraw what you paid.</strong> When Bob buys subsidized VoteVets stock at $0.70, the other $0.30 came from Alice's surplus. If Bob withdraws, he gets $0.70 back—exactly what he put in. Alice's $0.30 returns to her subsidy pool, ready to recruit the next donor. There's nothing to extract.</p>
-</section>
-
-<!-- ────── CARRYING COST ────── -->
-<section class="reveal">
-  <div class="section-num">06 — Built-In Protection</div>
-  <h2>Time is on the honest donor's side</h2>
-
-  <p>While your money sits in a cause fund, it earns interest for that cause every day. If you're a genuine supporter, that's the whole point.</p>
-
-  <p>But if someone parks money in a cause they don't support, hoping to game the system, every day they hold that position costs them real money. Interest is flowing to something they don't care about while they wait. It's a small cost—money market rates are modest—but it only penalizes bad actors. Honest donors pay nothing, psychologically.</p>
-</section>
-
-<!-- ────── SWITCHING ────── -->
-<section class="reveal">
-  <div class="section-num">07 — Switching and Exiting</div>
-  <h2>How trades actually work</h2>
-
-  <p>When the system finds a beneficial match, it looks like this: you sell your Emily's List stock and receive 110% as much Americans for Prosperity stock. The extra 10% was funded by an AFP supporter's surplus. Your dashboard shows the rebalance just like a managed fund.</p>
-
-  <p>The key detail: your AFP position now carries a <strong>subsidy lien</strong>—a live obligation reflecting how much of your position is funded by someone else's surplus. This amount can change as the subsidizer updates their valuations. If they reduce their commitment, the lien shrinks, your out-of-pocket share rises, and the system may unwind the match if it's no longer worth it to you. If you exit, you repay the current lien. You walk away with exactly your current out-of-pocket share. The lien returns to the subsidizer's pool.</p>
-
-  <p>This means every match is self-correcting. If someone gets recruited into a position and then leaves, the subsidy flows back to the payer and recruits the next donor. The system only "spends" subsidy when someone holds long-term—which is exactly what supporters want.</p>
-
-  <p>Want to leave entirely? Just liquidate your positions. You get back what you paid, the liens stay with the causes, and the system re-optimizes tomorrow without you. Your principal was always yours.</p>
-</section>
-
-<!-- ────── DOUBLE EFFECT ────── -->
-<section class="reveal">
-  <div class="section-num">08 — The Double Effect</div>
-  <h2>Defunding what you oppose is a side effect</h2>
-
-  <p>When the system makes Americans for Prosperity stock cheap through efficient matching, people leave all kinds of other causes to take the deal—including causes you might not support. AFP gains funding and other causes lose it, simultaneously, from the same dollars.</p>
-
-  <p>This "double effect" is real and valuable. But it's emergent, never targeted. You can't aim the gravitational pull at specific causes. You just make your cause so attractive that people switch to it from wherever they were. The defunding happens as a side effect of making good causes compelling—which is exactly what keeps the mechanism safe from cobra breeding.</p>
+  <p>Causeum avoids this because subsidies are always on the destination. You subsidize VoteVets, not "leaving Club for Growth." A faker who parks in Club for Growth hoping to collect a switching bounty finds there is no switching bounty. The cheap VoteVets stock was available to them without the detour. Meanwhile they bled yield to Club for Growth every day they were parked there.</p>
 </section>
 
 <!-- ────── PROPERTIES ────── -->
 <section id="properties" class="reveal">
-  <div class="section-num">09 — What We Guarantee</div>
+  <div class="section-num">08 — Guarantees</div>
   <h2>Properties of the system</h2>
-
   <div class="properties">
     <div class="property">
-      <h4>Honest Pricing Is Approximately Optimal</h4>
-      <p>Understating your price risks getting skipped for cheaper donors. Overstating means you pay more than the cause is worth to you. You can shade your bid, but you don't know where the cutoff is—and shading too aggressively means missing the trade entirely.</p>
-    </div>
-    <div class="property">
-      <h4>Maximum Impact</h4>
-      <p>The matching algorithm recruits the cheapest donors first, stretching every surplus dollar as far as possible. No alternative allocation produces more total cause funding.</p>
-    </div>
-    <div class="property">
-      <h4>Manipulation-Proof</h4>
-      <p>Nobody can profit by faking support for a cause they don't believe in. Subsidies attach to the destination, not the origin, and you can only ever withdraw what you paid.</p>
-    </div>
-    <div class="property">
-      <h4>No One Loses</h4>
-      <p>Every trade is voluntary through auto-trade opt-in. Your money is always yours, always redeemable at your out-of-pocket cost.</p>
+      <h4>No Extraction Possible</h4>
+      <p>You can only withdraw what you paid out of pocket. Liens go back to subsidizers on exit. There's nothing to skim.</p>
     </div>
     <div class="property">
       <h4>Fully Backed</h4>
-      <p>Every dollar sits in a money market fund. The platform's revenue comes from a small spread on matches and a modest management fee.</p>
+      <p>Every dollar sits in a money market fund. Your out-of-pocket principal is always yours. Withdraw anytime.</p>
+    </div>
+    <div class="property">
+      <h4>Honest Pricing Is Approximately Optimal</h4>
+      <p>Understating your price risks getting skipped for cheaper donors. Overstating means you pay more than the cause is worth to you. Same dynamics as any real market.</p>
+    </div>
+    <div class="property">
+      <h4>Atomic Execution</h4>
+      <p>All optimizer moves execute atomically. No partial fills, no dangling positions.</p>
     </div>
     <div class="property">
       <h4>Self-Correcting</h4>
-      <p>When someone exits a subsidized position, the lien returns to the subsidizer's pool and recruits the next donor. The system continuously re-optimizes.</p>
+      <p>When someone exits, the lien returns to the subsidizer pool and recruits the next cheapest donor. When a subsidizer changes their mind, the optimizer unwinds positions that no longer make sense.</p>
+    </div>
+    <div class="property">
+      <h4>Gets Better With Scale</h4>
+      <p>More users means more surplus, more recruitable donors, and more efficient matching. The optimizer finds gains that grow with the square of the user count.</p>
     </div>
   </div>
 </section>
 
 <!-- ────── REVENUE ────── -->
 <section class="reveal">
-  <div class="section-num">10 — Sustainability</div>
+  <div class="section-num">09 — Sustainability</div>
   <h2>How Causeum sustains itself</h2>
-
-  <p>When the system matches donors, there's a gap between what the subsidizer is willing to spend and what the recruit needs. Causeum keeps a small portion of that gap as a transaction spread, similar to how any exchange operates.</p>
-
-  <p>We also charge a modest annual management fee on total assets, comparable to any donor-advised fund. The incentives are clean: we make more money when there are more donors and more productive matches. We profit by making the system work well, not by extracting from participants.</p>
+  <p>Causeum charges a modest annual management fee on total assets in the money market fund, comparable to any donor-advised fund. The incentives are clean: we grow when the fund grows.</p>
 </section>
 
 <!-- ────── SUMMARY ────── -->
 <section class="reveal">
-  <div class="section-num">11 — In Short</div>
+  <div class="section-num">10 — In Short</div>
   <h2>The whole idea</h2>
-
-  <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes as donations. You set a price per cause that says how much you'd contribute per dollar of impact. The system matches donors daily—using the surplus from people who price high to recruit people who price low. When you're matched, you might sell one cause's stock and receive more of another, with the premium funded by a passionate supporter. Subsidies are embedded in the stock and return to the subsidizer if you leave. You can always liquidate at what you paid out of pocket.</p>
-
-  <p>The result: every dollar in the system goes further than it would anywhere else.</p>
-
-  <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 2rem;">Cause stock is not a security. It represents a tagged position in a money market fund whose yield flows to a designated 527 political organization.</p>
+  <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes. You set a price for each cause. Your surplus above par automatically subsidizes other people's positions in causes you value—making those causes cheaper and attracting new donors. Subsidies become permanent liens on the stock they fund. If a recipient leaves, they get back what they paid out of pocket and the lien returns to the subsidizer. The optimizer runs continuously, finding the most efficient use of every dollar of surplus. The result: your donations go further than they would anywhere else.</p>
+  <p style="font-size:0.85rem;color:var(--text-dim);margin-top:2rem;">Cause stock is not a security. It represents a tagged position in a money market fund whose yield flows to a designated political organization (527) or tax-exempt charity (501(c)(3)). Donations to 501(c)(3) organizations may be tax-deductible.</p>
 </section>
 
-<!-- ────── THEORY ────── -->
+<!-- ────── DEEP DIVE ────── -->
 <section class="reveal">
-  <div class="section-num">12 — For the Skeptics</div>
-  <h2>Known limitations and game theory</h2>
-  <p>Causeum's mechanism has been stress-tested against standard mechanism design critiques. Here's what holds up and what doesn't.</p>
+  <div class="section-num">11 — For Wonks</div>
+  <h2>Deep dive</h2>
+  <p>The worked math, the edge cases, and the game theory.</p>
 
   <details>
-    <summary>Read the full analysis</summary>
+    <summary>Open the deep dive</summary>
     <div class="theory-content">
 
-    <h3>Honest pricing is not guaranteed</h3>
-    <p>Causeum is a pay-as-bid market. You pay what you state. So naturally, people will shade their bids—understate their price hoping to get recruited at a discount, or overstate hoping to appear as a cheaper recruit. This is the same dynamic present in every commodity exchange, real estate market, and first-price auction. It's not a novel vulnerability. Shading is risky: understate too much and you get skipped in favor of genuinely cheaper donors. Overstate and you pay more than the cause is worth to you. You don't know where the cutoff is, so aggressive shading means missing the trade entirely.</p>
+    <h3>Worked example: subsidies and liens</h3>
+    <p>Three causes: Emily's List (EL), Club for Growth (CFG), VoteVets (VV). Four donors:</p>
+
+    <table class="val-table">
+      <thead><tr><th>User</th><th>Holds</th><th>Amt</th><th>EL</th><th>CFG</th><th>VV</th></tr></thead>
+      <tbody>
+        <tr><td>Grace</td><td>EL</td><td>$350</td><td class="num">1.00</td><td class="num-red">0.10</td><td class="num-warm">0.85</td></tr>
+        <tr><td>Sam</td><td>CFG</td><td>$300</td><td class="num-red">0.10</td><td class="num">1.00</td><td class="num-warm">0.70</td></tr>
+        <tr><td>Nora</td><td>VV</td><td>$400</td><td class="num-warm">0.82</td><td class="num-red">0.08</td><td class="num">1.00</td></tr>
+        <tr><td>Jake</td><td>CFG</td><td>$500</td><td class="num-red">0.07</td><td class="num">1.00</td><td class="num-warm">0.60</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Step 1: Identify surplus</h3>
+    <p>Grace holds EL at $1.00 and values VV at $0.85. She's happy in EL, but her surplus—the gap between her valuation and the cost of holding—is available to subsidize VV. How much surplus? She values VV at $0.85, so she'd give up $0.15/dollar to put money there. On $350, that's $52.50 of available surplus for VV subsidies.</p>
+    <p>Nora holds VV at $1.00. She has surplus available to subsidize VV too—she'd happily fund more VV. Her surplus for VV subsidies = $0.00/dollar (she's already at par). But she values EL at $0.82, so she has $0.18/dollar of surplus for EL subsidies on her $400 = $72.</p>
+    <p>Sam and Jake hold CFG at $1.00 and value VV at $0.70 and $0.60 respectively. They're potential recruits into VV if subsidized.</p>
+
+    <h3>Step 2: The optimizer matches</h3>
+    <p>The optimizer sees: $52.50 of VV subsidy available from Grace. Sam needs $0.30/dollar to switch to VV. On $300, that's $90 needed. Grace can only cover $52.50. Is there other VV surplus? Not directly—but the optimizer can search for multi-party arrangements.</p>
+    <p>Suppose Sam switches $175 of his $300 to VV (a partial switch). Cost: $0.30 × $175 = $52.50. Grace's surplus exactly covers it.</p>
+    <p><strong>After the move:</strong></p>
+    <p>Grace: $350 in EL, but $52.50 has been transferred as a lien onto Sam's VV position. Grace's redeemable balance: $297.50.</p>
+    <p>Sam: $125 in CFG + $175 in VV. The VV position cost him $122.50 out of pocket ($175 × 0.70). The remaining $52.50 is Grace's lien.</p>
+    <p>VV yield increased by $175/year. Grace paid $52.50 for that—about 3.3x leverage.</p>
+
+    <h3>Step 3: What if Sam leaves?</h3>
+    <p>Sam decides to sell his VV position. He repays the $52.50 lien. It flows back to Grace's surplus pool. Sam gets $122.50 back—exactly his out-of-pocket cost. Grace's redeemable balance goes back to $350. The optimizer immediately looks for the next cheapest VV recruit to place Grace's surplus with.</p>
+
+    <h3>Step 4: What if Grace changes her mind?</h3>
+    <p>Grace lowers her VV valuation to $0.50. Her surplus for VV drops. The optimizer sees that Sam's lien is no longer fully supported and unwinds the position. Sam's VV stock is sold, the lien returns to Grace, and Sam goes back to CFG. Both end up where they started. Nobody lost anything except the yield that flowed to VV during the time the position was active—which is the whole point.</p>
+
+    <h3>Why subsidies don't need to be bilateral</h3>
+    <p>Grace didn't coordinate with Sam. She didn't even know he existed. She just stated her valuations and the optimizer spent her surplus optimally. Tomorrow, Sam might leave and the optimizer recruits Jake instead (who needs $0.40/dollar—more expensive, but maybe new surplus from other users makes it viable). The system continuously rebalances as people enter, exit, and update their prices.</p>
+
+    <h3>The double effect in practice</h3>
+    <p>Grace subsidized VV. Sam moved from CFG to VV. From Grace's perspective: VV gained $175 of funding AND CFG lost $175. She didn't pay for the defunding—it happened because she made VV attractive enough that someone voluntarily left CFG. This is the double effect. It's real, it's valuable, and it's cobra-safe because Grace never referenced CFG at all.</p>
+
+    <h3>The optimizer</h3>
+    <p>The optimizer is a linear program. Variables: total dollars allocated to each cause. Objective: maximize total welfare (aggregate valuation × dollars per cause). Constraints: nobody's utility drops below their current level (Pareto), total money is conserved, and subsidy expenditures don't exceed available surplus. With 50 causes and 10,000 users, this is a ~50-variable LP with ~10,050 constraints—solvable in milliseconds by any off-the-shelf solver. It runs on every price change.</p>
+
+    <h3>Multi-way matching</h3>
+    <p>The optimizer isn't limited to one subsidizer and one recruit. It can find arrangements where Alice's surplus subsidizes VV, which recruits Bob (from CFG), whose departure frees up CFG surplus from a CFG subsidizer, which then subsidizes EL, which recruits Carol. These multi-way arrangements are found automatically by the LP—they're just properties of the optimal solution, not something the algorithm searches for explicitly.</p>
+
+    <h3>Honest pricing</h3>
+    <p>Causeum is a pay-as-bid market. Your stated price is what you pay out of pocket. Shade your bids and you risk getting skipped (if you understate) or overpaying (if you overstate). You don't know other users' positions, so gaming requires information you don't have. These are the same dynamics present in every commodity exchange and first-price auction.</p>
 
     <h3>The parking arbitrage</h3>
-    <p>If you genuinely want to fund AFP, depositing directly means you pay par. But you could instead park your money in a neutral cause, state a low AFP price, and wait to be recruited at a discount—getting $1 of AFP funding for $0.70 out of pocket. This is not extractive in a zero-sum sense. The subsidizer wanted to recruit someone into AFP. They succeeded. AFP got funded. But it creates real waste: the subsidizer paid a premium they didn't need to pay, and while you waited, yield flowed to the neutral cause instead of AFP. The defense is time and friction. Yield bleeding to a cause you don't care about is a real cost. Managing a parked position takes effort. For most users, the juice isn't worth the squeeze. At scale, this can be further mitigated by allowing downward-sloping demand curves (e.g., "I value the first $100 of AFP at $0.90 and the next $500 at $0.70") so the system can price-discriminate between a donor's first dollar and their hundredth.</p>
+    <p>A rational actor might park money in a neutral cause, state a low VV price, and wait to be recruited at a discount. This isn't extractive—the subsidizer wanted to recruit someone, and they did. But it wastes yield (flowing to the parked cause every day) and the parker needs specific knowledge of other users' surplus to know when to park. For most users, the yield cost exceeds any strategic benefit.</p>
 
-    <h3>Why not VCG?</h3>
-    <p>We considered a Vickrey-Clarke-Groves mechanism, which would provide formal incentive compatibility—truthful reporting as a dominant strategy. VCG works by charging each participant the externality they impose on everyone else. It's theoretically elegant but practically fragile: it can run a budget deficit, produces counterintuitive prices under collusion, and nobody outside of academic economics understands it. More fundamentally, VCG requires irreversible payments to function (you can't undo a VCG transfer), which conflicts with the redeemable cause-stock model. The subsidy lien approach achieves cobra-prevention mechanically rather than through incentive design, which is simpler and more robust.</p>
-
-    <h3>Transient farming is not viable</h3>
-    <p>Could a bot rapidly cycle in and out of subsidized positions to drain liquidity? No. All matching settles in a single daily batch—you cannot cycle faster than once per day. Each cycle, the bot enters, gets matched, exits, repays the lien, and pays the transaction spread. The cause retains the lien. The bot loses the spread. Net result: the attacker loses money on every cycle. The atomic batch clearing makes this attack strictly unprofitable.</p>
-
-    <h3>The spread is a tax on efficiency</h3>
-    <p>The transaction spread—how the platform generates revenue—prevents marginal trades from clearing. This is the same deadweight loss present in every exchange. It's a calibration problem, not a design flaw. Too large a spread kills marginal matches. Too small and the platform isn't viable. The AUM fee on the total money market pool provides baseline revenue that allows the spread to be kept small.</p>
+    <h3>Tax deductions for 501(c)(3) donations</h3>
+    <p>Attribution is trivial in this model. At any moment, each user holds a specific dollar amount of each cause's stock. The yield on that amount flows to that cause. That's their donation. If the cause is a 501(c)(3), the receipt is straightforward: user X held $Y of Cause Z for N days, yield = $Y × daily rate × N. Each person's position is always unambiguously theirs. The lien doesn't complicate this—the lien holder's money is generating yield for the cause too, and they'd receive a separate receipt for that amount.</p>
 
     </div>
   </details>
 </section>
 
 <footer>
-  <p style="font-size: 1rem; color: var(--text-bright); margin-bottom: 0.5rem;">Interested?</p>
-  <p>Causeum is in early development. If you want to follow along or get involved, reach out at <strong>hello@causeum.com</strong>.</p>
+  <p style="font-size:1rem;color:var(--text-bright);margin-bottom:0.5rem;">Interested?</p>
+  <p>Causeum is in early development. Reach out at <strong>hello@causeum.com</strong>.</p>
 </footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
