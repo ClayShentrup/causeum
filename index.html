@@ -43,6 +43,7 @@
   section + section { border-top: 1px solid var(--border); }
   .section-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
   section h2 { font-family: var(--serif); font-size: 2rem; color: var(--text-bright); letter-spacing: -0.01em; margin-bottom: 1.5rem; line-height: 1.25; }
+  section h2 em { font-style: italic; color: var(--accent); }
   section p { margin-bottom: 1.3rem; color: var(--text); }
   section p:last-child { margin-bottom: 0; }
   strong { color: var(--text-bright); font-weight: 500; }
@@ -54,12 +55,12 @@
   .callout p { color: var(--text-bright); font-size: 1.05rem; }
   .callout-red { background: rgba(212,115,110,0.06); border-color: rgba(212,115,110,0.3); }
   .val-table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.9rem; }
-  .val-table th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 0.8rem 1rem; border-bottom: 2px solid var(--border); }
-  .val-table td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); }
+  .val-table th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 0.8rem 1rem; border-bottom: 2px solid var(--border); }
+  .val-table td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(37,43,56,0.5); color: var(--text); }
   .val-table tr:last-child td { border-bottom: none; }
   .val-table .num { font-family: var(--mono); color: var(--accent); font-weight: 500; }
-  .val-table .num-warm { font-family: var(--mono); color: var(--warm); font-weight: 500; }
-  .val-table .num-red { font-family: var(--mono); color: var(--red); font-weight: 500; }
+  .val-table .num-warm { font-family: var(--mono); color: var(--warm); }
+  .val-table .num-red { font-family: var(--mono); color: var(--red); }
   .properties { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 2rem 0; }
   .property { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.3rem 1.5rem; }
   .property h4 { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
@@ -78,7 +79,7 @@
   .theory-content h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--text-bright); margin-top: 2rem; margin-bottom: 0.8rem; line-height: 1.3; }
   .theory-content h3:first-child { margin-top: 0.5rem; }
   .theory-content p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1rem; }
-  .theory-content .val-table { font-size: 0.82rem; }
+  .theory-content .val-table { font-size: 0.75rem; }
   .theory-content .val-table td, .theory-content .val-table th { padding: 0.5rem 0.6rem; }
   footer { max-width: 780px; margin: 0 auto; padding: 4rem 2.5rem; border-top: 1px solid var(--border); text-align: center; }
   footer p { font-size: 0.82rem; color: var(--text-dim); }
@@ -101,7 +102,7 @@
   <div class="logo">Cause<span>um</span></div>
   <div class="nav-links">
     <a href="#how">How It Works</a>
-    <a href="#subsidy">Subsidies</a>
+    <a href="#trade">The Trade</a>
     <a href="#safe">Why It's Safe</a>
     <a href="#properties">Guarantees</a>
   </div>
@@ -119,202 +120,243 @@
   <h2>Three steps</h2>
   <p><strong>Deposit money.</strong> It goes into a money market fund. Fully backed, always yours, withdraw anytime.</p>
   <p><strong>Buy cause stock.</strong> Pick the political organizations or charities you want to support. The yield your money earns flows to those causes as donations. Donations to 501(c)(3) charities are tax-deductible—we track your holdings daily so attribution is exact.</p>
-  <p><strong>Set your prices.</strong> Rate every cause from $0.00 to $1.00—how much a dollar of funding there is worth to you. If your price is less than $1.00, that gap is what you'd need someone else to cover for you to donate there. If your price is exactly $1.00, you're saying you'd fund it entirely yourself—and your surplus is available to help bring others in.</p>
-  <p>The system continuously finds opportunities to make everyone's donations go further and executes them instantly. You get a notification when your money moves.</p>
+  <p><strong>Set your prices.</strong> Rate every cause from $0.00 to $1.00—how much a dollar of funding there is worth to you. These prices tell the optimizer how much you'd be willing to sacrifice to move your money to a different cause—and how much it would take to move you.</p>
+  <p>The system continuously looks for mutually beneficial trades and executes them instantly. You get a notification when your money moves.</p>
 </section>
 
-<!-- ────── THE SUBSIDY ────── -->
-<section id="subsidy" class="reveal">
+<!-- ────── THE TRADE ────── -->
+<section id="trade" class="reveal">
   <div class="section-num">02 — The Core Idea</div>
-  <h2>Your surplus recruits other donors</h2>
-  <p>When you value a cause at $1.00, you're willing to fund every dollar yourself. But what if someone else values the same cause at $0.70? They'd donate if someone covered the $0.30 gap. Your surplus does that automatically.</p>
-  <p>You don't choose who to subsidize. You don't even know it's happening. You just state your prices and the optimizer spends your surplus where it creates the most impact—recruiting the cheapest available donors into the causes you value.</p>
+  <h2>Mutual compromise</h2>
+  <p>Every trade on Causeum is mutual. Both sides give something up. Both sides come out ahead. The "payment" isn't cash—it's the fact that the other person also moved.</p>
 
   <div class="example">
-    <div class="example-label">How a subsidy works</div>
-    <p>Grace values <strong>VoteVets</strong> at <strong>$1.00</strong>. She has $350 in the system. Her surplus—$0.15/dollar above what it costs to hold her own position—sits as an open offer.</p>
-    <p>Sam values VoteVets at <strong>$0.70</strong>. He'd donate there if someone covered his $0.30 gap. The optimizer sees Grace's offer and matches it with other subsidizers to cover Sam's gap.</p>
-    <p><strong>What happens:</strong> Real money moves out of Grace's balance and into a <strong>lien</strong> on Sam's VoteVets position. Grace's redeemable balance drops. Sam holds VoteVets stock that cost him $0.70 out of pocket, with a $0.30 lien funded by Grace and others.</p>
-    <p>VoteVets now has another $1.00 of yield-generating stock. Grace spent $0.15 to help recruit it. That's leverage.</p>
+    <div class="example-label">How a trade works</div>
+    <p>Grace has $350 in <strong>Emily's List</strong>. Sam has $300 in <strong>Club for Growth</strong>. They're on opposite sides. But they both moderately like <strong>VoteVets</strong>.</p>
+    <table class="val-table">
+      <thead><tr><th></th><th>Emily's List</th><th>Club for Growth</th><th>VoteVets</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Grace</strong></td><td class="num">$1.00</td><td class="num-red">$0.10</td><td class="num-warm">$0.85</td></tr>
+        <tr><td><strong>Sam</strong></td><td class="num-red">$0.10</td><td class="num">$1.00</td><td class="num-warm">$0.90</td></tr>
+      </tbody>
+    </table>
+    <p>The system moves both to VoteVets. Both sacrifice. Both gain more than they lose.</p>
+    <p><strong>Grace's sacrifice:</strong> she left her $1.00 cause for a $0.85 cause. Cost: $0.15/dollar × $350 = $52.50 of satisfaction. <strong>Grace's gain:</strong> Sam's $300 moved from Club for Growth (worth $0.10 to her) to VoteVets (worth $0.85). Gain: $225. <strong>Net: +$172.50.</strong></p>
+    <p><strong>Sam's sacrifice:</strong> he left his $1.00 cause for a $0.90 cause. Cost: $0.10/dollar × $300 = $30. <strong>Sam's gain:</strong> Grace's $350 moved from Emily's List (worth $0.10 to him) to VoteVets (worth $0.90). Gain: $280. <strong>Net: +$250.</strong></p>
+    <p>No money changed hands. They both just moved to common ground.</p>
   </div>
-
-  <p>Neither party needs to know the other exists. Neither agreed to a bilateral trade. The optimizer just found that Grace's surplus and Sam's price made a match.</p>
 </section>
 
 <!-- ────── THE LIEN ────── -->
 <section class="reveal">
   <div class="section-num">03 — The Lien</div>
-  <h2>What keeps it locked in</h2>
-  <p>When the optimizer moves someone into a subsidized position, the subsidy becomes a permanent <strong>lien</strong> on that stock. This is real money that left real accounts—not an accounting fiction.</p>
-  <p>If Sam wants to leave his VoteVets position, he repays the lien. He walks away with $0.70—exactly what he paid out of pocket. The $0.30 lien flows back to the subsidizers' pools, ready to recruit the next person.</p>
-  <p>If Grace changes her mind and lowers her VoteVets valuation, the optimizer may pull her subsidy back and the lien shrinks. Sam's out-of-pocket obligation rises. If it rises past what Sam's willing to pay, the system unwinds the position—Sam exits, Grace gets her money back.</p>
-  <p>The lien is what makes the whole system work. Without it, subsidized donors could take the cheap stock and immediately move back to their original cause—keeping the benefit without maintaining the position. The lien ensures that if you leave, you give back what you didn't pay for.</p>
+  <h2>What each side puts down</h2>
+  <p>When both sides move to a compromise, each one is sacrificing something. Grace gave up $0.15/dollar to be in VoteVets. Sam gave up $0.10/dollar. Those sacrifices are formalized as <strong>liens</strong>—real money transferred from each person's redeemable balance onto the other's position.</p>
+  <p>Grace's lien on Sam's VoteVets position represents the value she's providing by being in VoteVets instead of Emily's List. Sam's lien on Grace's position represents the same in reverse. Both positions carry liens from the other side.</p>
+  <p>If Grace wants to leave, she repays Sam's lien. She gets back her out-of-pocket cost. Sam's lien returns to him. The trade unwinds cleanly.</p>
+  <p>But the lien doesn't freeze anything. If preferences change—Grace decides she values VoteVets more, or Sam decides he values it less—the optimizer recalculates. It may shrink or grow the liens, or unwind the trade entirely. The lien is a cost in the optimization, not a lock on the position.</p>
 </section>
 
 <!-- ────── THE DOUBLE EFFECT ────── -->
 <section class="reveal">
   <div class="section-num">04 — The Double Effect</div>
   <h2>Defunding happens as a side effect</h2>
-  <p>Grace subsidizes VoteVets because she likes VoteVets. She doesn't target anyone. But some of the people the optimizer recruits into VoteVets were previously in causes Grace hates—like Club for Growth. They left voluntarily because the subsidized price was attractive enough.</p>
-  <p>Meanwhile, Sam was independently subsidizing causes he cares about. Some of the people he recruited came from Emily's List. Neither Grace nor Sam coordinated. Neither paid the other. But the net effect is: both got their enemies defunded.</p>
+  <p>Grace didn't target Club for Growth. She just moved to VoteVets because the trade made her better off. But the result is: Club for Growth lost $300 of funding and VoteVets gained $650. Grace funded what she likes and defunded what she hates—from a single move.</p>
+  <p>Sam got the same double effect in reverse. Emily's List lost $350, VoteVets gained $650. Neither person paid the other. Neither referenced the cause they hate. The defunding is a side effect of both people finding common ground.</p>
 
   <div class="callout">
-    <p>The double effect is real but emergent. You fund what you love. Defunding what you hate is a side effect of making your cause more attractive than the alternatives.</p>
+    <p>The double effect is real but emergent. You fund what you love. Defunding what you hate is a side effect of finding common ground with someone on the other side.</p>
   </div>
+</section>
+
+<!-- ────── THE STRONGEST RESULT ────── -->
+<section class="reveal">
+  <div class="section-num">05 — The Strongest Result</div>
+  <h2>Everyone is happier with where <em>all</em> the money ended up</h2>
+  <p>When we say "no one is worse off," we don't just mean each trade made both parties happy. We mean something much stronger.</p>
+  <p>Each user's satisfaction is measured against <strong>the entire system</strong>—where every dollar sits, across all causes, including money they don't own and trades they weren't part of. If someone else's trade moved money into a cause you hate, that counts against your satisfaction. If it moved money into a cause you like, that helps you.</p>
+  <p>The optimizer only executes a batch of trades if, when you add up all the movements, <strong>every single user</strong> is at least as happy with the global outcome as they were before. Not just the trade participants. Everyone. Including bystanders.</p>
+
+  <div class="callout">
+    <p>In a 1,000-user simulation: 992 people were happier with where all the money in the system ended up—including money they don't own and trades they weren't part of. Zero people were worse off. The remaining 8 broke even.</p>
+  </div>
+
+  <p>This is possible because the optimizer sees the full picture. It won't execute a trade between Grace and Sam if doing so would make Carol worse off—even though Carol isn't involved. Carol's preference over where all money sits is a hard constraint.</p>
+  <p>The result at scale: partisan extremes collapse. The DNC, RNC, Emily's List, and NRA lost the most funding. Moderate and widely-valued causes grew. Both left-leaning and right-leaning donors saw causes they hate get defunded while causes they like gained. Both sides came out ahead because they stopped wasting money cancelling each other out.</p>
 </section>
 
 <!-- ────── WHAT YOU SEE ────── -->
 <section class="reveal">
-  <div class="section-num">05 — What You See</div>
+  <div class="section-num">06 — What You See</div>
   <h2>Notifications</h2>
-  <p>Your dashboard shows your cause stock positions, the yield flowing to each cause, and your total impact. When the optimizer executes a move, you get a notification:</p>
+  <p>Your dashboard shows your cause stock positions, the yield flowing to each cause, and your total impact. When the optimizer executes a trade involving you, you get a notification:</p>
 
   <div class="notif">
-    <div class="notif-header">Your surplus just recruited a new donor.</div>
-    <p>$0.15 of your surplus helped bring a new donor into <strong>VoteVets</strong>. They committed $1.00 to VoteVets, of which $0.70 was their own money and $0.30 was covered by you and other supporters.</p>
-    <p><strong>Your balance now:</strong> $335 redeemable (was $350)</p>
-    <p><strong>Your impact:</strong> $1.00 of new VoteVets funding from $0.15 of your surplus</p>
+    <div class="notif-header">You and another donor found common ground.</div>
+    <p>You both moved to <strong>VoteVets</strong>. You gave up $0.15/dollar on your Emily's List position. In exchange, $300 moved out of Club for Growth—a cause you rated at $0.10.</p>
+    <p><strong>Your portfolio now:</strong> $350 VoteVets (was $350 Emily's List)</p>
+    <p><strong>Your sacrifice:</strong> $52.50 of satisfaction</p>
+    <p><strong>Your gain:</strong> $225 from the other donor's move</p>
+    <p><strong>Net: +$172.50</strong></p>
   </div>
 
   <div class="notif">
-    <div class="notif-header">You got a better deal on a cause you like.</div>
-    <p>Supporters of <strong>VoteVets</strong> are subsidizing new positions. You've been matched into VoteVets at a discounted price.</p>
-    <p><strong>Your portfolio now:</strong> $300 VoteVets (cost you $210 out of pocket, $90 lien from subsidizers)</p>
-    <p><strong>If you leave:</strong> you get $210 back. The $90 returns to the subsidizers.</p>
+    <div class="notif-header">Your position improved without any trade.</div>
+    <p>Other donors' trades shifted money toward causes you like. Your satisfaction increased even though your position didn't change.</p>
+    <p><strong>Your portfolio:</strong> unchanged</p>
+    <p><strong>System-wide effect on you: +$340</strong></p>
   </div>
 </section>
 
 <!-- ────── WHY IT'S SAFE ────── -->
 <section id="safe" class="reveal">
-  <div class="section-num">06 — Why It's Safe</div>
+  <div class="section-num">07 — Why It's Safe</div>
   <h2>No one can game this</h2>
-  <p><strong>You can only withdraw what you paid.</strong> The lien belongs to the cause until you leave, at which point it goes back to the subsidizers. There's nothing to extract.</p>
+  <p><strong>You can only withdraw what you paid.</strong> Both sides of a trade carry liens from the other. If you leave, you repay the lien and get back your out-of-pocket cost. There's nothing to extract.</p>
   <p><strong>There's no stock to resell.</strong> Anyone who wants cause stock just buys new stock at par. Cause stock has no resale value—it only has value as yield flowing to a cause you believe in.</p>
-  <p><strong>Faking doesn't help.</strong> Parking money in a cause you hate to attract subsidies doesn't work—the subsidies are on the destination, not the origin. Cheap VoteVets stock is available to everyone regardless of what they held before. Going through Club for Growth first accomplishes nothing except bleeding yield to a cause you hate.</p>
-  <p><strong>Moves are atomic.</strong> The optimizer executes subsidy placements atomically. You can never be left holding a position you didn't agree to.</p>
+  <p><strong>Faking doesn't help.</strong> Parking money in a cause you hate hoping to be a more attractive trading partner just bleeds yield to that cause every day you hold it. And since the optimizer matches based on everyone's stated prices, you'd need specific knowledge of other users' positions to game anything—information you don't have.</p>
+  <p><strong>Bystanders are protected.</strong> The optimizer won't execute trades that make non-participants worse off. Your satisfaction with the global allocation is a hard constraint.</p>
 </section>
 
 <!-- ────── COBRA ────── -->
 <section class="reveal">
-  <div class="section-num">07 — The Cobra Problem</div>
+  <div class="section-num">08 — The Cobra Problem</div>
   <h2>Why most matching schemes fail—and why this doesn't</h2>
   <p>The British colonial government in India once offered a bounty for dead cobras. Locals started breeding cobras to collect the bounty. When the government cancelled the program, the breeders released their stock. More cobras than ever.</p>
   <p>If you pay people to move money <em>away</em> from a cause, you incentivize people to put money <em>into</em> that cause to collect the payment.</p>
   <div class="callout-red callout">
-    <p>You can never pay people to stop funding something. You can only make the alternatives more attractive.</p>
+    <p>You can never pay people to stop funding something. You can only give them a reason to move somewhere they like better.</p>
   </div>
-  <p>Causeum avoids this because subsidies are always on the destination. You subsidize VoteVets, not "leaving Club for Growth." A faker who parks in Club for Growth hoping to collect a switching bounty finds there is no switching bounty. The cheap VoteVets stock was available to them without the detour. Meanwhile they bled yield to Club for Growth every day they were parked there.</p>
+  <p>Causeum avoids this because there are no bounties. Every trade is a mutual compromise—both sides move to common ground and both carry liens. Nobody gets paid to leave a cause. A faker who parks money in a hated cause bleeds yield to that cause while waiting for a trade that never references where anyone came from.</p>
 </section>
 
 <!-- ────── PROPERTIES ────── -->
 <section id="properties" class="reveal">
-  <div class="section-num">08 — Guarantees</div>
+  <div class="section-num">09 — Guarantees</div>
   <h2>Properties of the system</h2>
   <div class="properties">
     <div class="property">
       <h4>No Extraction Possible</h4>
-      <p>You can only withdraw what you paid out of pocket. Liens go back to subsidizers on exit. There's nothing to skim.</p>
+      <p>Both sides carry liens. You can only withdraw your out-of-pocket cost. There's nothing to skim.</p>
     </div>
     <div class="property">
       <h4>Fully Backed</h4>
       <p>Every dollar sits in a money market fund. Your out-of-pocket principal is always yours. Withdraw anytime.</p>
     </div>
     <div class="property">
-      <h4>Honest Pricing Is Approximately Optimal</h4>
-      <p>Understating your price risks getting skipped for cheaper donors. Overstating means you pay more than the cause is worth to you. Same dynamics as any real market.</p>
+      <h4>Bystanders Protected</h4>
+      <p>The optimizer won't execute trades that make non-participants worse off. Everyone's satisfaction with the global allocation is a constraint.</p>
     </div>
     <div class="property">
       <h4>Atomic Execution</h4>
-      <p>All optimizer moves execute atomically. No partial fills, no dangling positions.</p>
+      <p>All trades execute atomically. Both sides move together or neither does.</p>
     </div>
     <div class="property">
-      <h4>Self-Correcting</h4>
-      <p>When someone exits, the lien returns to the subsidizer pool and recruits the next cheapest donor. When a subsidizer changes their mind, the optimizer unwinds positions that no longer make sense.</p>
+      <h4>Honest Pricing Is Approximately Optimal</h4>
+      <p>Misrepresenting your values risks ending up in causes you don't like or missing trades that would benefit you. Same dynamics as any real market.</p>
     </div>
     <div class="property">
       <h4>Gets Better With Scale</h4>
-      <p>More users means more surplus, more recruitable donors, and more efficient matching. The optimizer finds gains that grow with the square of the user count.</p>
+      <p>More users means more ideological diversity, more common ground to find, and bigger gains. The optimizer finds gains that grow with the square of the user count.</p>
     </div>
   </div>
 </section>
 
 <!-- ────── REVENUE ────── -->
 <section class="reveal">
-  <div class="section-num">09 — Sustainability</div>
+  <div class="section-num">10 — Sustainability</div>
   <h2>How Causeum sustains itself</h2>
   <p>Causeum charges a modest annual management fee on total assets in the money market fund, comparable to any donor-advised fund. The incentives are clean: we grow when the fund grows.</p>
 </section>
 
 <!-- ────── SUMMARY ────── -->
 <section class="reveal">
-  <div class="section-num">10 — In Short</div>
+  <div class="section-num">11 — In Short</div>
   <h2>The whole idea</h2>
-  <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes. You set a price for each cause. Your surplus above par automatically subsidizes other people's positions in causes you value—making those causes cheaper and attracting new donors. Subsidies become permanent liens on the stock they fund. If a recipient leaves, they get back what they paid out of pocket and the lien returns to the subsidizer. The optimizer runs continuously, finding the most efficient use of every dollar of surplus. The result: your donations go further than they would anywhere else.</p>
+  <p>You buy stock in the causes you believe in. Your money earns interest that flows to those causes. You set a price for each cause. The optimizer continuously finds pairs or groups of donors who are funding each other's enemies and routes them to common ground. Both sides give something up. Both sides gain more than they lose. Both carry liens from the other to prevent reversal. Bystanders are protected—no trade executes if it makes anyone in the system worse off. Your principal is always yours. And if the common ground is a charity, you get a tax deduction.</p>
   <p style="font-size:0.85rem;color:var(--text-dim);margin-top:2rem;">Cause stock is not a security. It represents a tagged position in a money market fund whose yield flows to a designated political organization (527) or tax-exempt charity (501(c)(3)). Donations to 501(c)(3) organizations may be tax-deductible.</p>
 </section>
 
-<!-- ────── DEEP DIVE ────── -->
+<!-- ────── WORKED EXAMPLE ────── -->
 <section class="reveal">
-  <div class="section-num">11 — For Wonks</div>
-  <h2>Deep dive</h2>
-  <p>The worked math, the edge cases, and the game theory.</p>
+  <div class="section-num">12 — Worked Example</div>
+  <h2>Watch the optimizer run</h2>
+  <p>20 donors, 6 causes, two optimization cycles. Real numbers.</p>
 
   <details>
-    <summary>Open the deep dive</summary>
+    <summary>Open the worked example</summary>
     <div class="theory-content">
 
-    <h3>Worked example: subsidies and liens</h3>
-    <p>Three causes: Emily's List (EL), Club for Growth (CFG), VoteVets (VV). Four donors:</p>
+    <h3>Round 1: Initial positions</h3>
+    <p>Six causes: Emily's List (EL), Club for Growth (CFG), VoteVets (VV), Americans for Prosperity (AFP), League of Conservation Voters (LCV), Against Malaria Foundation (AMF). Some donors are in their top cause; some aren't.</p>
 
     <table class="val-table">
-      <thead><tr><th>User</th><th>Holds</th><th>Amt</th><th>EL</th><th>CFG</th><th>VV</th></tr></thead>
+      <thead><tr><th>Donor</th><th>In</th><th>Amt</th><th>EL</th><th>CFG</th><th>VV</th><th>AFP</th><th>LCV</th><th>AMF</th></tr></thead>
       <tbody>
-        <tr><td>Grace</td><td>EL</td><td>$350</td><td class="num">1.00</td><td class="num-red">0.10</td><td class="num-warm">0.85</td></tr>
-        <tr><td>Sam</td><td>CFG</td><td>$300</td><td class="num-red">0.10</td><td class="num">1.00</td><td class="num-warm">0.70</td></tr>
-        <tr><td>Nora</td><td>VV</td><td>$400</td><td class="num-warm">0.82</td><td class="num-red">0.08</td><td class="num">1.00</td></tr>
-        <tr><td>Jake</td><td>CFG</td><td>$500</td><td class="num-red">0.07</td><td class="num">1.00</td><td class="num-warm">0.60</td></tr>
+        <tr><td><strong>Grace</strong></td><td>EL</td><td>$350</td><td class="num">1.00</td><td class="num-red">0.08</td><td class="num-warm">0.85</td><td class="num-red">0.05</td><td class="num-warm">0.80</td><td class="num-red">0.40</td></tr>
+        <tr><td><strong>Alice</strong></td><td>LCV</td><td>$500</td><td class="num-warm">0.60</td><td class="num-red">0.05</td><td class="num-warm">0.78</td><td class="num-red">0.04</td><td class="num">1.00</td><td class="num-red">0.30</td></tr>
+        <tr><td><strong>Nora</strong></td><td>VV</td><td>$400</td><td class="num-warm">0.82</td><td class="num-red">0.06</td><td class="num">1.00</td><td class="num-red">0.05</td><td class="num-warm">0.76</td><td class="num-red">0.35</td></tr>
+        <tr><td><strong>Eve</strong></td><td>EL</td><td>$250</td><td class="num-warm">0.75</td><td class="num-red">0.04</td><td class="num-warm">0.80</td><td class="num-red">0.03</td><td class="num">0.90</td><td class="num-red">0.25</td></tr>
+        <tr><td><strong>Rosa</strong></td><td>LCV</td><td>$500</td><td class="num-warm">0.70</td><td class="num-red">0.03</td><td class="num-warm">0.68</td><td class="num-red">0.03</td><td class="num">1.00</td><td class="num-warm">0.50</td></tr>
+        <tr><td><strong>Quinn</strong></td><td>VV</td><td>$150</td><td class="num">0.85</td><td class="num-red">0.06</td><td class="num-warm">0.72</td><td class="num-red">0.05</td><td class="num-warm">0.70</td><td class="num-red">0.20</td></tr>
+        <tr><td><strong>Kim</strong></td><td>VV</td><td>$200</td><td class="num-warm">0.80</td><td class="num-red">0.07</td><td class="num">1.00</td><td class="num-red">0.06</td><td class="num-warm">0.82</td><td class="num-red">0.30</td></tr>
+        <tr><td><strong>Sam</strong></td><td>AFP</td><td>$300</td><td class="num-red">0.08</td><td class="num">0.90</td><td class="num-warm">0.70</td><td class="num-warm">0.75</td><td class="num-red">0.10</td><td class="num-red">0.15</td></tr>
+        <tr><td><strong>Frank</strong></td><td>CFG</td><td>$600</td><td class="num-red">0.05</td><td class="num">1.00</td><td class="num-red">0.06</td><td class="num">0.85</td><td class="num-red">0.04</td><td class="num-red">0.10</td></tr>
+        <tr><td><strong>Jake</strong></td><td>AFP</td><td>$500</td><td class="num-red">0.06</td><td class="num-warm">0.82</td><td class="num-red">0.08</td><td class="num">1.00</td><td class="num-red">0.05</td><td class="num-red">0.12</td></tr>
+        <tr><td><strong>Dan</strong></td><td>CFG</td><td>$400</td><td class="num-red">0.07</td><td class="num-warm">0.80</td><td class="num-red">0.09</td><td class="num">0.95</td><td class="num-red">0.06</td><td class="num-red">0.15</td></tr>
+        <tr><td><strong>Hank</strong></td><td>CFG</td><td>$450</td><td class="num-red">0.04</td><td class="num">1.00</td><td class="num-red">0.07</td><td class="num-warm">0.72</td><td class="num-red">0.03</td><td class="num-red">0.08</td></tr>
+        <tr><td><strong>Pat</strong></td><td>CFG</td><td>$200</td><td class="num-red">0.05</td><td class="num-warm">0.70</td><td class="num-red">0.10</td><td class="num">0.92</td><td class="num-red">0.04</td><td class="num-red">0.18</td></tr>
+        <tr><td><strong>Tom</strong></td><td>CFG</td><td>$400</td><td class="num-red">0.04</td><td class="num">1.00</td><td class="num-red">0.06</td><td class="num">0.92</td><td class="num-red">0.05</td><td class="num-red">0.08</td></tr>
+        <tr><td><strong>Maya</strong></td><td>AMF</td><td>$350</td><td class="num-warm">0.55</td><td class="num-warm">0.50</td><td class="num-warm">0.70</td><td class="num-red">0.45</td><td class="num-warm">0.60</td><td class="num">1.00</td></tr>
+        <tr><td><strong>Leo</strong></td><td>EL</td><td>$300</td><td class="num-warm">0.65</td><td class="num-red">0.40</td><td class="num-warm">0.75</td><td class="num-red">0.35</td><td class="num-warm">0.70</td><td class="num-warm">0.80</td></tr>
+        <tr><td><strong>Ivy</strong></td><td>VV</td><td>$250</td><td class="num-warm">0.50</td><td class="num-red">0.45</td><td class="num">1.00</td><td class="num-red">0.40</td><td class="num-warm">0.55</td><td class="num">0.85</td></tr>
+        <tr><td><strong>Omar</strong></td><td>AFP</td><td>$350</td><td class="num-red">0.30</td><td class="num-warm">0.65</td><td class="num-warm">0.55</td><td class="num-warm">0.60</td><td class="num-red">0.25</td><td class="num">0.90</td></tr>
+        <tr><td><strong>Zara</strong></td><td>LCV</td><td>$300</td><td class="num-warm">0.60</td><td class="num-red">0.15</td><td class="num-warm">0.65</td><td class="num-red">0.10</td><td class="num">1.00</td><td class="num-red">0.45</td></tr>
+        <tr><td><strong>Ben</strong></td><td>CFG</td><td>$200</td><td class="num-red">0.20</td><td class="num-warm">0.55</td><td class="num-warm">0.80</td><td class="num-warm">0.60</td><td class="num-red">0.15</td><td class="num-red">0.40</td></tr>
       </tbody>
     </table>
 
-    <h3>Step 1: Identify surplus</h3>
-    <p>Grace holds EL at $1.00 and values VV at $0.85. She's happy in EL, but her surplus—the gap between her valuation and the cost of holding—is available to subsidize VV. How much surplus? She values VV at $0.85, so she'd give up $0.15/dollar to put money there. On $350, that's $52.50 of available surplus for VV subsidies.</p>
-    <p>Nora holds VV at $1.00. She has surplus available to subsidize VV too—she'd happily fund more VV. Her surplus for VV subsidies = $0.00/dollar (she's already at par). But she values EL at $0.82, so she has $0.18/dollar of surplus for EL subsidies on her $400 = $72.</p>
-    <p>Sam and Jake hold CFG at $1.00 and value VV at $0.70 and $0.60 respectively. They're potential recruits into VV if subsidized.</p>
+    <p><strong>Starting totals:</strong> EL $900, CFG $2,250, VV $1,000, AFP $1,150, LCV $1,300, AMF $350.</p>
 
-    <h3>Step 2: The optimizer matches</h3>
-    <p>The optimizer sees: $52.50 of VV subsidy available from Grace. Sam needs $0.30/dollar to switch to VV. On $300, that's $90 needed. Grace can only cover $52.50. Is there other VV surplus? Not directly—but the optimizer can search for multi-party arrangements.</p>
-    <p>Suppose Sam switches $175 of his $300 to VV (a partial switch). Cost: $0.30 × $175 = $52.50. Grace's surplus exactly covers it.</p>
-    <p><strong>After the move:</strong></p>
-    <p>Grace: $350 in EL, but $52.50 has been transferred as a lien onto Sam's VV position. Grace's redeemable balance: $297.50.</p>
-    <p>Sam: $125 in CFG + $175 in VV. The VV position cost him $122.50 out of pocket ($175 × 0.70). The remaining $52.50 is Grace's lien.</p>
-    <p>VV yield increased by $175/year. Grace paid $52.50 for that—about 3.3x leverage.</p>
+    <h3>Round 1: Optimizer runs</h3>
+    <p>The optimizer finds <strong>18 mutual trades</strong> in a single atomic batch. A few highlights:</p>
 
-    <h3>Step 3: What if Sam leaves?</h3>
-    <p>Sam decides to sell his VV position. He repays the $52.50 lien. It flows back to Grace's surplus pool. Sam gets $122.50 back—exactly his out-of-pocket cost. Grace's redeemable balance goes back to $350. The optimizer immediately looks for the next cheapest VV recruit to place Grace's surplus with.</p>
+    <p><strong>Ben and Alice find common ground at VoteVets.</strong> Ben moves $141 from CFG, Alice moves $500 from LCV, both into VV. Ben sacrificed his CFG position; his gain is that Alice's $500 left LCV (worth $0.15 to him) and joined VV (worth $0.80). Alice was nearly indifferent between LCV and VV but gained from Ben's CFG money leaving a cause she hates. Both carry liens from the other.</p>
 
-    <h3>Step 4: What if Grace changes her mind?</h3>
-    <p>Grace lowers her VV valuation to $0.50. Her surplus for VV drops. The optimizer sees that Sam's lien is no longer fully supported and unwinds the position. Sam's VV stock is sold, the lien returns to Grace, and Sam goes back to CFG. Both end up where they started. Nobody lost anything except the yield that flowed to VV during the time the position was active—which is the whole point.</p>
+    <p><strong>Nora and Sam converge on VoteVets.</strong> Nora moves from VV to LCV; Sam moves from AFP to VV. Nora sacrificed $0.24/dollar but gained because Sam's $300 left AFP ($0.05 to her) and joined VV ($1.00 to her). Sam sacrificed $0.05/dollar but gained because Nora valued having him in VV. Both carry liens.</p>
 
-    <h3>Why subsidies don't need to be bilateral</h3>
-    <p>Grace didn't coordinate with Sam. She didn't even know he existed. She just stated her valuations and the optimizer spent her surplus optimally. Tomorrow, Sam might leave and the optimizer recruits Jake instead (who needs $0.40/dollar—more expensive, but maybe new surplus from other users makes it viable). The system continuously rebalances as people enter, exit, and update their prices.</p>
+    <p><strong>Hank and Maya find common ground at Club for Growth.</strong> Hank moves $350 from CFG into a lien on Maya's new CFG position. Maya moves $350 from AMF to CFG. Hank gained because Maya's $350 moved from AMF ($0.08 to him) to CFG ($1.00 to him). Maya was indifferent—CFG at $0.50 plus the lien equalled AMF at $1.00.</p>
 
-    <h3>The double effect in practice</h3>
-    <p>Grace subsidized VV. Sam moved from CFG to VV. From Grace's perspective: VV gained $175 of funding AND CFG lost $175. She didn't pay for the defunding—it happened because she made VV attractive enough that someone voluntarily left CFG. This is the double effect. It's real, it's valuable, and it's cobra-safe because Grace never referenced CFG at all.</p>
+    <h3>Round 1 results</h3>
+    <p><strong>New totals:</strong> EL $0, CFG $1,256, VV $1,570, AFP $2,194, LCV $1,930, AMF $0.</p>
+    <p><strong>$4,335 redirected.</strong> $1,959 in mutual liens. <strong>Zero users worse off.</strong> Four users (Eve, Dan, Pat, Ben) actively gained because the optimizer moved them out of suboptimal positions.</p>
 
-    <h3>The optimizer</h3>
-    <p>The optimizer is a linear program. Variables: total dollars allocated to each cause. Objective: maximize total welfare (aggregate valuation × dollars per cause). Constraints: nobody's utility drops below their current level (Pareto), total money is conserved, and subsidy expenditures don't exceed available surplus. With 50 causes and 10,000 users, this is a ~50-variable LP with ~10,050 constraints—solvable in milliseconds by any off-the-shelf solver. It runs on every price change.</p>
+    <h3>Round 2: Preferences change</h3>
+    <p>A week later:</p>
+    <p>1. <strong>Rosa changes her mind.</strong> She lowers LCV from $1.00 to $0.50 and raises AMF to $0.90.</p>
+    <p>2. <strong>Tina joins</strong> with $400, valuing LCV at $0.95.</p>
+    <p>3. <strong>Sam raises his VV valuation</strong> from $0.70 to $0.90.</p>
 
-    <h3>Multi-way matching</h3>
-    <p>The optimizer isn't limited to one subsidizer and one recruit. It can find arrangements where Alice's surplus subsidizes VV, which recruits Bob (from CFG), whose departure frees up CFG surplus from a CFG subsidizer, which then subsidizes EL, which recruits Carol. These multi-way arrangements are found automatically by the LP—they're just properties of the optimal solution, not something the algorithm searches for explicitly.</p>
+    <p>The optimizer re-runs. Rosa's liens on Omar's LCV position are no longer justified at her new valuation—the cost outweighs the benefit. The optimizer unwinds them: Rosa's money returns to her balance, Omar's position loses the subsidy. The optimizer then looks for new trades with Rosa's freed-up capital (now aimed at AMF) and Tina's fresh money (aimed at LCV). Sam's stronger VV preference means his existing trade is more stable—less lien needed from Nora.</p>
 
-    <h3>Honest pricing</h3>
-    <p>Causeum is a pay-as-bid market. Your stated price is what you pay out of pocket. Shade your bids and you risk getting skipped (if you understate) or overpaying (if you overstate). You don't know other users' positions, so gaming requires information you don't have. These are the same dynamics present in every commodity exchange and first-price auction.</p>
+    <p>The system reshuffles, creating new mutual compromises that reflect everyone's current preferences. Some old liens dissolve. New ones form. Money flows to wherever the math says it does the most good.</p>
 
-    <h3>The parking arbitrage</h3>
-    <p>A rational actor might park money in a neutral cause, state a low VV price, and wait to be recruited at a discount. This isn't extractive—the subsidizer wanted to recruit someone, and they did. But it wastes yield (flowing to the parked cause every day) and the parker needs specific knowledge of other users' surplus to know when to park. For most users, the yield cost exceeds any strategic benefit.</p>
+    <h3>The key lesson</h3>
+    <p>Liens aren't locks. They're living costs in a continuously re-optimizing system. Every trade is mutual—both sides sacrifice, both gain, both carry liens from the other. When preferences change or new users arrive, the optimizer reshuffles everything.</p>
 
-    <h3>Tax deductions for 501(c)(3) donations</h3>
-    <p>Attribution is trivial in this model. At any moment, each user holds a specific dollar amount of each cause's stock. The yield on that amount flows to that cause. That's their donation. If the cause is a 501(c)(3), the receipt is straightforward: user X held $Y of Cause Z for N days, yield = $Y × daily rate × N. Each person's position is always unambiguously theirs. The lien doesn't complicate this—the lien holder's money is generating yield for the cause too, and they'd receive a separate receipt for that amount.</p>
+    <h3>At 1,000 users</h3>
+    <p>We ran a simulation with 1,000 users, 12 causes, and realistic polarized preferences. $919,292 total in the system.</p>
+    <p><strong>992 out of 1,000 users happier.</strong> Zero worse off. 8 broke even. 3.6% total welfare gain. 12.7% of all money redirected.</p>
+    <p>Partisan extremes collapsed: DNC, RNC, and Emily's List went to zero. NRA lost 54%. SBA lost 57%. Money flowed to causes with broader appeal: VoteVets +12%, Club for Growth +21%, AFP +11%, LCV +9%. GiveWell—the ultimate compromise—grew 1,656%.</p>
+    <p>Left-leaning donors saw $62,541 flow toward their causes and $57,574 defunded from the right. Right-leaning donors saw $33,365 toward theirs and $53,115 defunded from the left. <strong>Both sides came out ahead.</strong> Centrist/charity causes grew 164%.</p>
+    <p>And remember—"happier" means happier with where ALL the money sits, not just their own. Every bystander's preferences were respected.</p>
+
+    <h3>Technical notes</h3>
+    <p><strong>The optimizer</strong> is a linear program. Variables: total dollars per cause. Objective: maximize total welfare. Constraints: every user's satisfaction with the global allocation must not decrease, total money conserved. ~50 variables, ~10,050 constraints at scale. Solvable in milliseconds. Runs on every preference change.</p>
+    <p><strong>Multi-way matching.</strong> The optimizer finds n-way cycles (Shapley-Scarf Top Trading Cycles) where no pairwise trade exists. These are properties of the LP solution, not a separate search.</p>
+    <p><strong>Honest pricing</strong> is approximately optimal. Causeum is a pay-as-bid market with standard bid-shading dynamics—same as any commodity exchange.</p>
+    <p><strong>The parking arbitrage.</strong> Parking money in a neutral cause wastes yield and requires information about other users you don't have. For most users, not worth it.</p>
+    <p><strong>Tax deductions.</strong> Each user holds a specific dollar amount of each cause's stock at any moment. Yield = balance × rate × days. If the cause is a 501(c)(3), that's the receipt. Lien holders get a separate receipt.</p>
 
     </div>
   </details>
