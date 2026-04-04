@@ -142,8 +142,8 @@
     </table>
     <p>If both donate directly, Grace sends $100 to EL, Sam sends $100 to CFG. They cancel each other out. Pure waste.</p>
     <p>The optimizer routes both to VoteVets instead. Both sacrifice. Both gain more than they lose.</p>
-    <p><strong>Grace's math:</strong> she gave up $0.15/dollar sending her $100 to VV instead of EL. Cost: $15 of value. But Sam's $100 moved from CFG ($0.10 to her) to VV ($0.85 to her). Gain: $75. <strong>Net: +$60.</strong></p>
-    <p><strong>Sam's math:</strong> he gave up $0.10/dollar. Cost: $10. But Grace's $100 moved from EL ($0.10 to him) to VV ($0.90). Gain: $80. <strong>Net: +$70.</strong></p>
+    <p><strong>Grace's math:</strong> she gave up $0.15/dollar sending her $100 to VV instead of EL. Sacrifice: $15. But Sam's $100 also arrived at VV—a cause she values at $0.85. Gain: $85. <strong>Net: +$70.</strong></p>
+    <p><strong>Sam's math:</strong> he gave up $0.10/dollar sending his $100 to VV instead of CFG. Sacrifice: $10. But Grace's $100 also arrived at VV—a cause he values at $0.90. Gain: $90. <strong>Net: +$80.</strong></p>
   </div>
 
   <p>There's nothing to reverse because the money is already spent. Each round is a fresh pool. No positions, no liens, no lockups. Just optimally allocated donations.</p>
@@ -153,75 +153,67 @@
 <section class="reveal">
   <div class="section-num">03 — The Double Effect</div>
   <h2>Defunding happens as a side effect</h2>
-  <p>Grace didn't target Club for Growth. She just let the optimizer route her donation. But the result is: $100 that would have gone to CFG went to VoteVets instead. Grace funded what she likes and defunded what she hates—from a single donation.</p>
-  <p>Sam got the same effect in reverse. $100 that would have gone to EL went to VV. Neither person paid the other. Neither referenced the cause they hate. The defunding is a side effect of finding common ground.</p>
+  <p>The trade works because both sides value receiving money at VoteVets. But there's a bonus: $100 that would have gone to Club for Growth didn't. And $100 that would have gone to Emily's List didn't. Neither person targeted the other's cause. The defunding is a side effect of both people converging on common ground.</p>
 
   <div class="callout">
-    <p>You fund what you love. Defunding what you hate is a side effect of finding common ground with someone on the other side.</p>
+    <p>The trade is justified entirely by the subsidy—receiving the other person's money at a cause you value. Defunding what you hate is a bonus you don't have to factor in.</p>
   </div>
 </section>
 
 <!-- ────── AT SCALE ────── -->
 <section class="reveal">
   <div class="section-num">04 — At Scale</div>
-  <h2>How much more effective <em>your</em> donations become</h2>
-  <p>We simulated 1,000 donors with 12 causes and realistic partisan starting preferences—40% of each side's money going to their party flagship (DNC or RNC), the rest to aligned causes. This is how most people actually donate.</p>
+  <h2>What happens with <em>50,000 donors</em></h2>
+  <p>We simulated 50,000 donors with 12 causes and realistic partisan starting preferences—40% of each side's money in their party flagship (DNC or RNC), the rest in aligned causes. The optimizer ran exhaustive bilateral trades using only the subsidy criterion: does receiving the other person's money at the compromise cause outweigh my sacrifice?</p>
 
   <div class="callout">
-    <p>85% of donors were giving to a cause that wasn't their best match. Those who improved saw their donations become 39% more effective on average. Total donation effectiveness rose 27.7%. Zero donors were made worse off—every reallocation was voluntary.</p>
+    <p>89% of donors found a mutually beneficial trade. 89% of all money was redirected. Subsidy surplus averaged $0.90 per dollar donated—meaning every dollar your trading partner put toward the compromise cause was worth $0.90 to you, while your sacrifice averaged $0.10.</p>
   </div>
 
-  <p>The biggest gains came from the most partisan starting positions. DNC donors improved +58%. RNC donors +44%. Centrists improved +66%. The #1 destination was VoteVets, absorbing 397 donors from both sides.</p>
+  <p><strong>Where money flowed:</strong> the DNC collapsed from $9.3M to $945K. The RNC from $9.3M to $931K. Emily's List from $3.4M to $1.4M. NRA from $3.5M to $1.2M. The money went to causes both sides value: VoteVets surged from $3.5M to $22.8M. Conservation Voters grew to $5.9M. Americans for Prosperity to $4.6M. Against Malaria Foundation went from $0 to $608K. GiveWell from $0 to $587K.</p>
 
-  <h2 style="margin-top:3rem">The full picture: what <em>everyone else's</em> trades do for you</h2>
-  <p>Those numbers only measure your own donation being better placed. But when hundreds of other donors also find better matches, the entire landscape shifts. Money drains from partisan extremes and flows toward causes with broader appeal.</p>
-
-  <div class="callout">
-    <p>Total welfare rose 29.6%. 98.6% of all users were better off—including bystanders. Only 0.1% of the gain came from people's own money being better placed. 99.9% was externality: the cumulative benefit of everyone else also finding better causes.</p>
-  </div>
-
-  <p>139 users didn't move at all (already in their optimal cause). 99% of them still gained—purely from the landscape shifting around them. The value of Causeum isn't just that it finds <em>you</em> a better cause. It's that when enough people find better causes, the aggregate shift benefits nearly everyone.</p>
+  <p><strong>The surplus is real and concrete.</strong> When Grace's $100 arrives at VoteVets, Sam values that at $90 (he values VV at $0.90). Sam sacrificed $10 to be in VV instead of CFG. So Sam's net surplus is $80—he received $90 of value for a $10 sacrifice. That's real willingness-to-pay. Across 24,862 bilateral trades and 50,000 donors, the total subsidy surplus was $41.3 million from a $46.1 million pool.</p>
 </section>
 
 <!-- ────── THE FEE ────── -->
 <section class="reveal">
   <div class="section-num">05 — The Fee</div>
   <h2>We only make money when you do</h2>
-  <p>Causeum charges <strong>10% of the surplus we create for you</strong>. If the optimizer doesn't improve your allocation, you pay nothing.</p>
+  <p>Causeum takes a small percentage of the subsidy surplus it creates for you. If the optimizer can't find you a beneficial trade, your donation goes straight to your top cause and you pay nothing.</p>
 
   <div class="example">
-    <div class="example-label">How the fee works</div>
-    <p>You donate $100. If you'd donated directly, your top cause would get $100 of value. The optimizer routes your donation through a mutual compromise, and it delivers $120 of value. The surplus is $20. Causeum takes $2. You get $118 of impact. Still +18% better than donating on your own.</p>
-    <p>If the optimizer can't improve your allocation? Your full $100 goes to your top cause. No fee.</p>
+    <div class="example-label">The math</div>
+    <p>You donate $100 to the DNC. The optimizer finds a trade: you and an RNC donor both move to VoteVets. You sacrificed $15 (VV is $0.85 to you vs DNC at $1.00). But the RNC donor's $100 arrived at VV—a cause you value at $0.85. Subsidy gain: $85. Net surplus: $70. Causeum takes a small share of that $70.</p>
+    <p>If no trade improves your situation, your $100 goes to the DNC unchanged. No fee.</p>
   </div>
 
-  <p>This is fully auditable. Your receipt shows: what your donation would have done at your default cause, what it actually did through the optimizer, the surplus created, and our 10% cut. Full transparency.</p>
+  <p>In our 50,000-donor simulation, the average trader's subsidy surplus was $831 on a $927 donation (90%). At 5% of surplus, the fee is ~$42 per trader—about 4.5% of the donation. The trader keeps 95% of the value the system created for them. At that rate, total monthly revenue from 50,000 donors would be $2.1M.</p>
 </section>
 
 <!-- ────── WHAT YOU SEE ────── -->
 <section class="reveal">
   <div class="section-num">06 — What You See</div>
   <h2>Your monthly receipt</h2>
+  <p>Every receipt shows two things: the subsidy surplus (why the trade was made) and the defunding effect (an informational bonus showing what else changed). The trade is justified entirely by the subsidy. The defunding is a side effect you can see but that doesn't drive the optimizer.</p>
 
   <div class="notif">
     <div class="notif-header">Your donation this month: $100.00</div>
-    <p><strong>Default allocation:</strong> $100 to Emily's List (your top cause)</p>
-    <p><strong>Optimized allocation:</strong> $100 to VoteVets</p>
-    <p><strong>Why:</strong> You and another donor both moved to VoteVets. They stopped funding Club for Growth (a cause you rated at $0.10). You stopped funding Emily's List (a cause they rated at $0.10). Both of you came out ahead.</p>
-    <p><strong>Value if donated directly:</strong> $100.00</p>
-    <p><strong>Value through Causeum:</strong> $160.00</p>
-    <p><strong>Surplus created:</strong> $60.00</p>
-    <p><strong>Causeum fee (10% of surplus):</strong> $6.00</p>
-    <p><strong>Your net impact: $154.00</strong> — 54% more effective than donating directly.</p>
+    <p><strong>Default:</strong> $100 to Emily's List (your top cause, $1.00)</p>
+    <p><strong>Optimized:</strong> $100 to VoteVets ($0.85 to you)</p>
+    <p style="border-top:1px solid var(--border); padding-top:0.6rem; margin-top:0.6rem;"><strong>Your sacrifice:</strong> −$15.00 ($100 × (1.00 − 0.85))</p>
+    <p><strong>Subsidy gain:</strong> +$85.00 (their $100 arrived at VV, which you value at $0.85)</p>
+    <p><strong>Net subsidy surplus: +$70.00</strong> ← this is why the trade happened</p>
+    <p style="border-top:1px solid var(--border); padding-top:0.6rem; margin-top:0.6rem; color:var(--text-dim);"><strong>Defunding effect:</strong> −$10.00 (their $100 left CFG, which you valued at $0.10—you lost that incidental value)</p>
+    <p style="color:var(--text-dim);"><strong>Combined surplus: +$60.00</strong></p>
   </div>
 
   <div class="notif">
-    <div class="notif-header">The system found you a better match.</div>
-    <p>You were donating to <strong>Emily's List</strong> (valued at $0.75). The optimizer moved you to <strong>VoteVets</strong> (valued at $0.85). Your donation is now <strong>13% more effective</strong>.</p>
-    <p><strong>Surplus created:</strong> $10.00</p>
-    <p><strong>Causeum fee:</strong> $1.00</p>
-    <p><strong>Your net gain: $9.00</strong></p>
+    <div class="notif-header">No trade found this month.</div>
+    <p>The optimizer couldn't find a mutually beneficial trade for your donation this round. Your $100 went directly to <strong>Emily's List</strong>, exactly as if you'd donated on your own.</p>
+    <p><strong>Fee: $0.00</strong></p>
   </div>
+
+  <p style="font-size:0.88rem; color:var(--text-dim); margin-top:1.5rem;"><strong>A note on negative valuations:</strong> with positive valuations only ($0.00–$1.00), the defunding effect is always negative or zero—you lose whatever incidental value the other person's money was generating at their old cause. An advanced option may in the future allow negative valuations, which would flip the defunding line positive (expressing that funding a cause actively hurts you). This creates larger trades but introduces a cobra risk: someone could fake an extreme starting position to attract trade partners who overpay. Both components are always shown separately so you can evaluate the trade for yourself.</p>
 </section>
 
 <!-- ────── WHY IT'S SAFE ────── -->
@@ -243,7 +235,8 @@
   <div class="callout-red callout">
     <p>You can never pay people to stop funding something. You can only give them a reason to move somewhere they like better.</p>
   </div>
-  <p>Causeum avoids this because each round is a fresh pool of real donations. Nobody has a "position" to fake. You state your valuations, the optimizer routes your money, the money is spent. There's no stock to park in a hated cause hoping for a switching bounty—the optimizer just looks at what you said you value and finds the best match.</p>
+  <p>Causeum avoids this because trades are justified entirely by the subsidy—the value of receiving money at a compromise cause you like. The optimizer doesn't reward you for leaving a hated cause; it rewards you for arriving at a valued one. A faker who claims an extreme cause as their default gains nothing—their trading partner's surplus comes from receiving the faker's money at the compromise, not from defunding the fake cause.</p>
+  <p>A future advanced mode may allow negative valuations, where the defunding component actively drives trades. Participants who opt in would accept the cobra risk for potentially larger surplus.</p>
 </section>
 
 <!-- ────── PROPERTIES ────── -->
@@ -261,7 +254,7 @@
     </div>
     <div class="property">
       <h4>Pay Only for Value</h4>
-      <p>Causeum takes 10% of the surplus it creates for you. No surplus, no fee. Fully auditable.</p>
+      <p>Causeum takes a small share of the bilateral surplus it creates for you. No trade found? No fee. Your donation goes to your top cause unchanged.</p>
     </div>
     <div class="property">
       <h4>Atomic Execution</h4>
@@ -282,7 +275,7 @@
 <section class="reveal">
   <div class="section-num">10 — In Short</div>
   <h2>The whole idea</h2>
-  <p>You donate monthly. You rate every cause. The optimizer pools everyone's donations and allocates them to maximize total value—finding mutual compromises where donors on opposite sides both come out ahead. Your donation goes further than it would anywhere else. Causeum takes 10% of the improvement, so we only profit when you do. Donations to 501(c)(3) charities are tax-deductible.</p>
+  <p>You donate monthly. You rate every cause. The optimizer pools everyone's donations and finds mutual compromises where donors on opposite sides both come out ahead. Your sacrifice is small—a slightly less preferred cause. Your gain is large—the other person's money also arrives at a cause you value. Causeum takes a small share of the surplus from each trade. No trade found? No fee. Donations to 501(c)(3) charities are tax-deductible.</p>
   <p style="font-size:0.85rem;color:var(--text-dim);margin-top:2rem;">Causeum routes donations to designated political organizations (527) and tax-exempt charities (501(c)(3)). Donations to 501(c)(3) organizations may be tax-deductible.</p>
 </section>
 
@@ -328,19 +321,17 @@
     <p><strong>If everyone donated directly:</strong> EL $600, CFG $1,750, VV $1,200, AFP $1,100, LCV $1,300, AMF $1,000.</p>
 
     <h3>The optimizer runs</h3>
-    <p>The optimizer looks at everyone's valuations and finds the allocation that maximizes total value, subject to the constraint that each donor's money must go to a cause they value at least as much as their default. A few of the trades it finds:</p>
+    <p>The optimizer scans every pair of donors and every possible compromise cause. For each combination, it checks: does each side value receiving the other's money at the compromise cause more than their sacrifice? It executes the best trade, then scans again. Repeat until no more beneficial trades exist.</p>
 
-    <p><strong>Grace and Sam find common ground at VoteVets.</strong> Grace's $350 goes to VV instead of EL. Sam's $300 goes to VV instead of CFG. Grace sacrificed $0.15/dollar but gained because Sam's money left CFG. Sam sacrificed $0.10/dollar but gained because Grace's money left EL. Both net positive.</p>
+    <p><strong>Grace and Sam find common ground at VoteVets.</strong> Grace's $350 goes to VV instead of EL. Sam's $300 goes to VV instead of CFG. Grace's math: sacrifice = $350 × (1.00 − 0.85) = $52.50. Subsidy gain = $300 × 0.85 = $255 (Sam's money arriving at VV). Net: +$202.50. Sam's math: sacrifice = $300 × (0.90 − 0.70) = $60. Subsidy gain = $350 × 0.70 = $245. Net: +$185. Both come out ahead.</p>
 
-    <p><strong>Eve moves to LCV.</strong> She valued EL at $0.75 and LCV at $0.90—she was in the wrong cause. The optimizer just corrected it. No trade partner needed. Her donation is 20% more effective.</p>
+    <p><strong>Hank and Maya find common ground at Club for Growth.</strong> Maya's default is AMF ($1.00) and she values CFG at $0.50—a big sacrifice of $175. But she receives Hank's $450 at CFG ($0.50 to her) = $225 of subsidy gain. Net: +$50. Hank sacrifices $450 × (1.00 − 1.00) = $0 (he's already in CFG) and receives Maya's $350 at CFG ($1.00 to him) = $350. Net: +$350.</p>
 
-    <p><strong>Hank and Maya find common ground at Club for Growth.</strong> Maya valued AMF at $1.00 and CFG at $0.50—a big sacrifice. But Hank valued Maya's money in CFG enormously more than in AMF. The mutual gain was large enough for both to benefit.</p>
-
-    <h3>At 1,000 donors</h3>
-    <p>With 1,000 donors, 12 causes, and realistic partisan starting preferences:</p>
-    <p><strong>Personal improvement:</strong> 85% of donors improve. Average gain: +39%. Total donation effectiveness: +27.7%. Zero donors worse off.</p>
-    <p><strong>Full social impact:</strong> total welfare +29.6%. 98.6% of all users better off. Only 0.1% of the gain came from individual improvements. 99.9% was externality—the cumulative benefit of everyone else also finding better causes. The system's value is overwhelmingly in the network effect.</p>
-    <p>DNC donors gained +58%. RNC donors +44%. Centrists +66%. VoteVets was the #1 destination from both sides. Partisan extremes collapsed. Broadly valued causes grew.</p>
+    <h3>At 50,000 donors</h3>
+    <p>With 50,000 donors, 12 causes, and realistic partisan preferences, using the subsidy-only trade criterion:</p>
+    <p><strong>89% of donors traded.</strong> 89% of all money redirected. The DNC collapsed from $9.3M to $945K. The RNC from $9.3M to $931K. VoteVets surged from $3.5M to $22.8M. Conservation Voters grew to $5.9M. AFP to $4.6M. Against Malaria went from $0 to $608K. GiveWell from $0 to $587K.</p>
+    <p><strong>$41.3 million in subsidy surplus</strong> from a $46.1 million pool ($0.90 per dollar donated). That's real willingness-to-pay—each dollar of surplus represents the value a trader placed on receiving their partner's money at the compromise cause, minus their own sacrifice.</p>
+    <p>Average trader surplus: $831 on a $927 donation (90%). Left-leaning: 99% traded. Right-leaning: 100%. Centrists: 100%.</p>
 
     <h3>Technical notes</h3>
     <p><strong>The optimizer</strong> searches for mutually beneficial trades—pairs or groups where all participants gain. It can be implemented as a linear program or bilateral matching algorithm. Runs on every donation cycle. With 50 causes and 10,000 donors, solvable in milliseconds.</p>
@@ -354,8 +345,4 @@
 
 <footer>
   <p style="font-size:1rem;color:var(--text-bright);margin-bottom:0.5rem;">Interested?</p>
-  <p>Causeum is in early development. Reach out at <strong>hello@causeum.com</strong>.</p>
-</footer>
-
-</body>
-</html>
+  <p>Causeum is in early development. Reach out at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
